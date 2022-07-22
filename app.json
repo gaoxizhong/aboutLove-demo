@@ -8,6 +8,9 @@
     "navigationBarTitleText": "Weixin",
     "navigationBarTextStyle":"black"
   },
+  "usingComponents":{
+    "rwj-tabbar": "components/rwj-tabbar/index"
+  },
   "style": "v2",
   "sitemapLocation": "sitemap.json"
 }
