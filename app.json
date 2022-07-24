@@ -1,15 +1,31 @@
 {
   "pages":[
-    "pages/index/index"
+    "pages/home/index",
+    "pages/order/index",
+    "pages/booth/index"
   ],
+  "tabBar": {
+    "custom": true,
+    "list": [   
+      {
+        "pagePath": "pages/home/index"
+      },
+      {
+        "pagePath": "pages/order/index"
+      },
+      {
+        "pagePath": "pages/booth/index"
+      }
+    ]
+  },
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
+    "navigationBarTitleText": "线上脱单盲盒",
     "navigationBarTextStyle":"black"
   },
   "usingComponents":{
-    "rwj-tabbar": "components/rwj-tabbar/index"
+    "rwj-tabbar": "custom-tab-bar/index"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"

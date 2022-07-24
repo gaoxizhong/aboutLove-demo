@@ -13,6 +13,9 @@ App({
       }
     })
   },
+  onShow(){
+
+  },
   globalData: {
     userInfo: null,
     is_code:''

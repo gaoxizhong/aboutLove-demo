@@ -1,0 +1,21 @@
+<view class="tabbar-container" wx:if="{{show}}">
+  <block wx:for="{{list}}" wx:key="index">
+    <view class="tabbar-item tabbar-center" bindtap="switchJump" data-url="{{item.pagePath}}"  data-active="{{index}}" wx:if="{{index == 1}}">
+      <view class="mask-item">
+        <view class="mask-border"></view>
+      </view>
+      <view class="item-center">
+        <view class="tabbar-image">
+          <image  src="{{active==index ? item.selectedIconPath : item.iconPath}}"></image>
+        </view>
+        <view class="tabbar-text" style="color:{{active== index ? selectedColor : color}};">{{item.text}}</view>
+      </view>
+    </view>
+    <view class="tabbar-item" bindtap="switchJump" data-url="{{item.pagePath}}"  data-active="{{index}}" wx:else>
+      <view class="tabbar-image" data-active="{{index}}">
+        <image src="{{active==index ? item.selectedIconPath : item.iconPath}}"></image>
+      </view>
+      <view class="tabbar-text" style="color:{{active== index ? selectedColor : color}};">{{item.text}}</view>
+    </view>
+  </block>
+</view>
