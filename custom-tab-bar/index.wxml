@@ -6,14 +6,14 @@
       </view>
       <view class="item-center">
         <view class="tabbar-image">
-          <image  src="{{active==index ? item.selectedIconPath : item.iconPath}}"></image>
+          <image class="image" src="{{active==index ? item.selectedIconPath : item.iconPath}}" />
         </view>
         <view class="tabbar-text" style="color:{{active== index ? selectedColor : color}};">{{item.text}}</view>
       </view>
     </view>
     <view class="tabbar-item" bindtap="switchJump" data-url="{{item.pagePath}}"  data-active="{{index}}" wx:else>
       <view class="tabbar-image" data-active="{{index}}">
-        <image src="{{active==index ? item.selectedIconPath : item.iconPath}}"></image>
+        <image class="image" src="{{active==index ? item.selectedIconPath : item.iconPath}}"></image>
       </view>
       <view class="tabbar-text" style="color:{{active== index ? selectedColor : color}};">{{item.text}}</view>
     </view>

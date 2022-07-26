@@ -9,3 +9,76 @@
     </block>
   </swiper>
 </view>
+
+<view class="block-title">
+  <text class="b-t">玩转盲盒/</text>快来参与拆开属于你的缘分！
+</view>
+<view class="fast-box">
+  <view class="fast-item">
+    <view class="fast-title" style="background-image: url(/images/two_img_01.png);">
+      <view class="fast-title-text">男生盒子</view>
+    </view>
+    <view class="fast-ul">
+      <view bindtap="clickLeave">
+        <image src="/images/two_icon_02.png"></image>
+        <view class="ellipsis ellipsis-h">留1张心情纸条</view>
+        <view class="ellipsis ellipsis-p">主动才会有故事！</view>
+      </view>
+      <view bindtap="clickSmoke">
+        <image src="/images/two_icon_01.png"></image>
+        <view class="ellipsis ellipsis-h">抽1张男生纸条</view>
+        <view class="ellipsis ellipsis-p">交友盲盒，一次拆个够！</view>
+      </view>
+    </view>
+  </view>
+  <view class="fast-item">
+    <view class="fast-title" style="background-image: url(/images/two_img_00.png);">
+      <view class="fast-title-text">女生盒子</view>
+    </view>
+    <view class="fast-ul">
+      <view bindtap="clickLeave">
+        <image src="/images/two_icon_03.png"></image>
+        <view class="ellipsis ellipsis-h">留1张女生纸条</view>
+        <view class="ellipsis ellipsis-p">主动才会有故事！</view>
+      </view>
+      <view bindtap="clickSmoke">
+        <image src="/images/two_icon_01.png"></image>
+        <view class="ellipsis ellipsis-h">抽1张女生纸条</view>
+        <view class="ellipsis ellipsis-p">交友盲盒，一次拆个够！</view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="block-title">
+  <text class="b-t">热门功能/</text>快来一键查询！
+</view>
+
+<view class="tool-box">
+  <view>
+    <image src="/images/two_icon_06.png" mode="widthFix"></image>
+    <text>常见问题</text>
+  </view>
+  <view>
+    <image src="/images/two_icon_05.png" mode="widthFix"></image>
+    <text>网站条款</text>
+  </view>
+  <view>
+    <image src="/images/two_icon_04.png" mode="widthFix"></image>
+    <text>投诉建议</text>
+  </view>
+</view>
+<view class="t-100"></view>
+
+<!-- ============  弹窗部分  ============ -->
+
+<!-- ==== 留一个弹窗 === -->
+<view class="lay-modal">
+  <view class="lay-nodal-backdrop"></view>
+</view>
+
+
+
+
+
+
+

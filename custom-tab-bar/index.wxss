@@ -1,9 +1,3 @@
-/* components/rwj-tabbar/index.wxss */
-view,cover-view,cover-image{
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
 .tabbar-container{
   width: 100%;
   height: 100rpx;
@@ -15,6 +9,7 @@ view,cover-view,cover-image{
   display: flex;
   align-items: flex-end;
   border-top: 1rpx solid #e6e6e6;
+  box-sizing: border-box;
 }
 .tabbar-container .tabbar-select{
   color: #298acb;
@@ -26,6 +21,7 @@ view,cover-view,cover-image{
   padding: 10rpx 0rpx;
   background-color: #fff;
   border-top: 1rpx solid #e6e6e6;
+  box-sizing: border-box;
 }
 .tabbar-item .tabbar-image{
   width: 100%;
@@ -34,7 +30,7 @@ view,cover-view,cover-image{
   justify-content: center;
   position: relative;
 }
-.tabbar-item .tabbar-image image{
+.tabbar-item .tabbar-image .image{
   width: 50rpx;
   height: 50rpx;
 }
@@ -52,12 +48,14 @@ view,cover-view,cover-image{
   padding: 0;
   background-color: transparent;
   position: relative;
+  box-sizing: border-box;
 }
 .tabbar-center .mask-item{
   width: 100%;
   height: 50rpx;
   overflow: hidden;
   position: relative;
+  box-sizing: border-box;
 }
 .tabbar-center .mask-item .mask-border{
   width: 120rpx;
@@ -68,6 +66,7 @@ view,cover-view,cover-image{
   position: absolute;
   top: 0;
   left: calc(50% - 60rpx);
+  box-sizing: border-box;
 }
 .tabbar-center .item-center{
   width: 100%;
@@ -82,6 +81,7 @@ view,cover-view,cover-image{
   padding: 5rpx;
   background-color: #fff;
   border-radius: 50%;
+  box-sizing: border-box;
 }
 .tabbar-center .item-center .tabbar-text{
   position: absolute;
@@ -89,7 +89,7 @@ view,cover-view,cover-image{
   left: 0rpx;
   width: 100%;
 }
-.tabbar-center .item-center .tabbar-image image{
+.tabbar-center .item-center .tabbar-image .image{
   width: 100%;
   height: 100%;
 }

@@ -7,9 +7,10 @@ Page({
    */
   data: {
     poster_tabs:[
-      {id:1,image:'https://huanbaobi.qingshanpai.com/banner/banner/banner1619681082_36611_.png'},
-      {id:2,image:'https://huanbaobi.qingshanpai.com/banner/banner/banner1619681082_36611_.png'},
-      {id:3,image:'https://huanbaobi.qingshanpai.com/banner/banner/banner1619681082_36611_.png'}
+      {id:1,image:'/images/banner-1.jpg'},
+      {id:2,image:'/images/banner-2.png'},
+      {id:3,image:'/images/banner-3.jpg'},
+      {id:3,image:'/images/banner-4.jpg'}
     ],
     swiper_index:0,
   },
