@@ -72,8 +72,41 @@
 <!-- ============  弹窗部分  ============ -->
 
 <!-- ==== 留一个弹窗 === -->
-<view class="lay-modal">
-  <view class="lay-nodal-backdrop"></view>
+<view class="lay-modal" wx:if="{{is_lay}}">
+  <view class="lay-nodal-backdrop" bindtap="clickLeaveBackdrop"></view>
+  <view class="lay-modal-box">
+
+    <view class="lay-modal-title">
+      <view class="lay-modal-remove" bindtap="clickLeaveBackdrop">X</view>
+      <text>留1张纸条</text>
+    </view>
+
+    <form>
+      <view class="lay-modal-form">
+        <view class="upd-cover">
+          <view class="upd-cover-input">
+            <image src="/images/black_tx.png" class="upd-img1"></image>
+          </view>
+        </view>
+
+        <view class="lay-modal-ul">
+          <view class="ul-items">
+            <label class="lay-modal-form-label"><text>*</text>选择位置</label>
+            <view class="select lay-modal-form-select"></view>
+          </view>
+          <view class="ul-items"></view>
+          <view class="ul-items"></view>
+          <view class="ul-items"></view>
+          <view class="ul-items"></view>
+          <view class="ul-items"></view>
+          <view class="ul-items"></view>
+          <view class="ul-items"></view>
+        </view>
+      </view>
+      <view class="lay-modal-btn"></view>
+    </form>
+
+  </view>
 </view>
 
 

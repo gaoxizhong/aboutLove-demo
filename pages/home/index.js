@@ -13,6 +13,7 @@ Page({
       {id:3,image:'/images/banner-4.jpg'}
     ],
     swiper_index:0,
+    is_lay:false
   },
 
   /**
@@ -93,4 +94,14 @@ Page({
       console.log(e)
     })
   },
+  clickLeave(){
+    this.setData({
+      is_lay: true
+    })
+  },
+  clickLeaveBackdrop(){
+    this.setData({
+      is_lay: false
+    })
+  }
 })

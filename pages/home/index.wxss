@@ -162,3 +162,80 @@ page{
   background-color: #000;
   opacity: 0.5;
 }
+.lay-modal-box{
+  width: 100%;
+  height: auto;
+  background: #fff;
+  padding: 30rpx;
+  border-radius: 10px 10px 0 0;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  box-sizing: border-box;
+}
+.lay-modal-title{
+  width: 100%;
+  position: relative;
+  padding: 0 60rpx;
+  text-align: center;
+  font-weight: bold;
+  font-size: 30rpx;
+  box-sizing: border-box;
+}
+.lay-modal-remove{
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 34rpx;
+  width: 64rpx;
+  text-align: center;
+  font-weight: bold;
+  color: #333;
+}
+.lay-modal-form{
+  border: solid 2px #000;
+  margin: 40rpx 0;
+  border-radius: 10px;
+  padding: 10rpx;
+  box-sizing: border-box;
+}
+.lay-modal-btn{
+  padding-bottom: 60rpx;
+  text-align: center;
+  box-sizing: border-box;
+}
+.upd-cover {
+  text-align: center;
+  padding: 40rpx 0;
+  box-sizing: border-box;
+}
+.lay-modal-ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.upd-cover-input {
+  position: relative;
+  display: inline-block;
+  background-size: cover;
+  height: 128rpx;
+  width: 128rpx;
+  line-height: 128rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.upd-img1{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+.ul-items{
+  position: relative;
+  padding-left: 200rpx;
+  border-bottom: solid 1px #F7F7F7;
+  min-height: 80rpx;
+  box-sizing: border-box;
+}
