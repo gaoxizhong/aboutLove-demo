@@ -239,3 +239,19 @@ page{
   min-height: 80rpx;
   box-sizing: border-box;
 }
+.lay-modal-form-label{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 200rpx;
+  line-height: 80rpx;
+  padding-left: 20rpx;
+  box-sizing: border-box;
+}
+.select {
+  position: relative;
+}
+.lay-modal-form-select {
+  padding: 10rpx 0;
+  box-sizing: border-box;
+}
