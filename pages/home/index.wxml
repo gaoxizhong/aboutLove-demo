@@ -81,7 +81,7 @@
       <text>留1张纸条</text>
     </view>
 
-    <form>
+    <form bindsubmit='laySub'>
       <view class="lay-modal-form">
         <view class="upd-cover">
           <view class="upd-cover-input">
@@ -92,22 +92,151 @@
         <view class="lay-modal-ul">
           <view class="ul-items">
             <label class="lay-modal-form-label"><text>*</text>选择位置</label>
-            <view class="select lay-modal-form-select"></view>
+            <view class="select lay-modal-form-select">
+              <picker mode="region" value="{{region}}" start="" bindchange="saveGarden">
+                <view class="picker">{{ garden ? garden:'请选择' }}</view>
+              </picker>
+            </view>
           </view>
-          <view class="ul-items"></view>
-          <view class="ul-items"></view>
-          <view class="ul-items"></view>
-          <view class="ul-items"></view>
-          <view class="ul-items"></view>
-          <view class="ul-items"></view>
-          <view class="ul-items"></view>
+          <view class="ul-items">
+            <label class="lay-modal-form-label"><text>*</text>您的性别</label>
+            <view class="lay-modal-form-select">
+              <radio-group name="gender" bindchange="radioChangeGender">
+                <view wx:for="{{checkeditems}}" wx:key="index">
+                  <label class="weui-cell weui-check__label">
+                    <view class="weui-cell__hd">
+                      <radio value="{{item.value}}" checked="{{item.checked}}"/>
+                    </view>
+                    <view class="weui-cell__bd">{{item.name}}</view>
+                  </label>
+                </view>
+              </radio-group>
+            </view>
+          </view>
+          <view class="ul-items">
+            <label class="lay-modal-form-label"><text>*</text>微信号码</label>
+            <view class="lay-modal-form-select">
+              <input type="text" name="weChatNumber" placeholder="请输入微信号" value="{{weChatNumber}}" />
+            </view>
+          </view>
+          <view class="ul-items">
+            <label class="lay-modal-form-label"><text>*</text>您的年龄</label>
+            <view class="lay-modal-form-select">
+              <input type="text" name="weChatNumber" placeholder="请输入年龄（周岁）" name="lay_age" value="{{lay_age}}" />
+            </view>
+          </view>
+          <view class="ul-items">
+            <label class="lay-modal-form-label"><text> </text>选择类型</label>
+            <view class="lay-modal-form-checkbox">
+              <label for="checkboxType" class="{{is_checkboxType?'active':''}}" bindtap="checkboxType">一直留(抽到后不会删除)</label>
+            </view>
+          </view>
+          <view class="ul-items">
+            <label class="lay-modal-form-label"><text> </text>您的星座</label>
+            <view class="select lay-modal-form-select">
+              <picker mode="selector" value="0" range="{{constellation}}" bindchange="constellation">
+                <view class="picker">{{ sel_constellation ? sel_constellation:'请选择' }}</view>
+              </picker>
+            </view>
+          </view>
+          <view class="ul-items">
+            <label class="lay-modal-form-label"><text> </text>介绍一下</label>
+            <view class="lay-modal-form-select">
+              <input type="text" name="lay_introduce" placeholder="一句话个人介绍" value="{{lay_introduce}}" />
+            </view>
+          </view>
         </view>
       </view>
-      <view class="lay-modal-btn"></view>
+      <view class="lay-modal-btn">
+        <button form-type='submit'>
+          <image src="/images/two-lay-modal-btn.png"></image>
+          <view class="lay-modal-btn-v">立即提交</view>
+        </button>
+      </view>
     </form>
 
   </view>
 </view>
+
+<!-- ==== 抽一个弹窗 === -->
+<view class="smoke-modal" wx:if="{{is_smoke}}">
+  <view class="smoke-nodal-backdrop" bindtap="clickSmokeBackdrop"></view>
+  <view class="smoke-modal-box">
+
+    <view class="lay-modal-title">
+      <view class="lay-modal-remove" bindtap="clickSmokeBackdrop">X</view>
+      <text>抽1张纸条</text>
+    </view>
+
+    <form bindsubmit='smokeSub'>
+      <view class="lay-modal-form">
+
+
+        <view class="lay-modal-ul">
+          <view class="ul-items">
+            <label class="lay-modal-form-label"><text>*</text>意向位置</label>
+            <view class="select lay-modal-form-select">
+              <picker mode="region" value="{{smoke_region}}" bindchange="saveSomkeGarden">
+                <view class="picker">{{ somke_garden ? somke_garden:'请选择' }}</view>
+              </picker>
+            </view>
+          </view>
+
+          <view class="ul-items">
+            <label class="lay-modal-form-label"><text>*</text>意向性别</label>
+            <view class="lay-modal-form-select">
+              <radio-group name="gender" bindchange="radioChangeSomkeGender">
+                <view wx:for="{{somke_checkeditems}}" wx:key="index">
+                  <label class="weui-cell weui-check__label">
+                    <view class="weui-cell__hd">
+                      <radio value="{{item.value}}" checked="{{item.checked}}"/>
+                    </view>
+                    <view class="weui-cell__bd">{{item.name}}</view>
+                  </label>
+                </view>
+              </radio-group>
+            </view>
+          </view>
+
+          <view class="ul-items">
+            <label class="lay-modal-form-label"><text>*</text>您的微信</label>
+            <view class="lay-modal-form-select">
+              <input type="text" name="weChatNumber" placeholder="请输入微信" value="{{somke_weChatNumber}}" />
+            </view>
+          </view>
+
+          <!-- 条件盲盒内容  -->
+          <view wx:if="{{is_condition}}">
+            <view class="ul-items">
+              <label class="lay-modal-form-label"><text> </text>意向星座</label>
+              <view class="select lay-modal-form-select">
+                <picker mode="selector" value="0" range="{{somke_constellation}}" bindchange="somke_constellation">
+                  <view class="picker">{{ sel_somkeconstellation ? sel_somkeconstellation:'请选择' }}</view>
+                </picker>
+              </view>
+            </view>
+            <view class="ul-items">
+              <label class="lay-modal-form-label"><text> </text>选择类型</label>
+              <view class="lay-modal-form-checkbox">
+                <label for="checkboxType" class="{{is_checkboxType?'active':''}}" bindtap="checkboxType">一直留(抽到后不会删除)</label>
+              </view>
+            </view>
+
+          </view>
+        </view>
+      </view>
+      <view class="lay-modal-btn">
+        <button form-type='submit'>
+          <image src="/images/two-lay-modal-btn.png"></image>
+          <view class="lay-modal-btn-v">立即提交</view>
+        </button>
+      </view>
+    </form>
+
+  </view>
+</view>
+
+
 
 
 

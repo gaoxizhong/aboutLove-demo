@@ -13,7 +13,33 @@ Page({
       {id:3,image:'/images/banner-4.jpg'}
     ],
     swiper_index:0,
-    is_lay:false
+//  ===========  ↓ 留一张弹窗数据  ========
+    is_lay:false,
+    region:['北京','北京市','东城区'],
+    garden:'',
+    checkeditems: [
+      {value: '1', name: '男'},
+      {value: '2', name: '女'},
+    ],
+    gender:'', // 性别
+    weChatNumber:'', // 微信号
+    lay_age:'', // 年龄
+    is_checkboxType:false, // 选择类型状态
+    constellation:['白羊座','金牛座','双子座','巨蟹座','狮子座','处女座','天秤座','天蝎座','射手座','摩羯座','水瓶座','双鱼座'], // 星座
+    sel_constellation:'', // 选择的星座
+    lay_introduce:'', // 介绍
+//  ===========  ↓ 抽一张弹窗数据  ========
+    is_smoke:false,
+    smoke_region:['北京','北京市','东城区'],
+    somke_garden:'',
+    somke_checkeditems: [ // 性别
+      {value: '1', name: '男'},
+      {value: '2', name: '女'},
+    ],
+    somke_gender:'', // 选中的性别
+    somke_weChatNumber:'',// 微信号
+    somke_constellation:['白羊座','金牛座','双子座','巨蟹座','狮子座','处女座','天秤座','天蝎座','射手座','摩羯座','水瓶座','双鱼座'], // 星座
+    sel_somkeconstellation:'', // 选择的星座
   },
 
   /**
@@ -103,5 +129,87 @@ Page({
     this.setData({
       is_lay: false
     })
-  }
+  },
+  // 选择位置
+  saveGarden(e) {
+    console.log(e)
+    this.setData({
+      garden: (e.detail.value[0] + e.detail.value[1] + e.detail.value[2])
+    })
+  },
+  //  选择性别
+  radioChangeGender(e) {
+    this.setData({
+      gender: e.detail.value,
+    })
+  },
+  // 选择类型
+  checkboxType(){
+    let that = this;
+    that.setData({
+      is_checkboxType: !that.data.is_checkboxType
+    })
+  },
+  // 选择星座
+  constellation(e){
+    let that = this;
+    let index = e.detail.value;
+    let constellation = that.data.constellation;
+    this.setData({
+      sel_constellation: constellation[index],
+    })
+  },
+  // 留1张提交
+  laySub(e){
+    let that = this;
+    let garden = that.data.garden;
+    let constellation = that.data.sel_constellation;
+    let params = {
+      garden,   //  位置
+      gender: e.detail.value.gender, // 性别
+      weChatNumber: e.detail.value.weChatNumber, // 微信号
+      age: e.detail.value.age, // 年龄
+      type: that.data.is_checkboxType?'1':'2', // 类型
+      constellation, // 星座
+      introduce: e.detail.value.lay_introduce  // 介绍
+    }
+
+
+
+  },
+
+
+  // 点击抽1张
+  clickSmoke(){
+    this.setData({
+      is_smoke:true,
+    })
+  },
+  //  点击抽一张弹窗背景
+  clickSmokeBackdrop(){
+    this.setData({
+      is_smoke:false,
+    })
+  },
+  // 选择意向位置
+  saveSomkeGarden(e) {
+    this.setData({
+      somke_garden: (e.detail.value[0] + e.detail.value[1] + e.detail.value[2])
+    })
+  },
+  //  选择意向性别
+  radioChangeSomkeGender(e) {
+    this.setData({
+      somke_gender: e.detail.value,
+    })
+  },
+  // 选择星座
+  somke_constellation(e){
+    let that = this;
+    let index = e.detail.value;
+    let constellation = that.data.somke_constellation;
+    this.setData({
+      sel_somkeconstellation: constellation[index],
+    })
+  },
 })

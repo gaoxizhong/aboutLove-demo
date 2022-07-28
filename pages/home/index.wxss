@@ -200,7 +200,7 @@ page{
   box-sizing: border-box;
 }
 .lay-modal-btn{
-  padding-bottom: 60rpx;
+  padding-bottom: 40rpx;
   text-align: center;
   box-sizing: border-box;
 }
@@ -234,24 +234,167 @@ page{
 }
 .ul-items{
   position: relative;
-  padding-left: 200rpx;
+  padding-left: 190rpx;
   border-bottom: solid 1px #F7F7F7;
   min-height: 80rpx;
   box-sizing: border-box;
+  display: flex;
+  align-items: center;
 }
 .lay-modal-form-label{
   position: absolute;
   left: 0;
   top: 0;
-  width: 200rpx;
+  width: 190rpx;
   line-height: 80rpx;
   padding-left: 20rpx;
   box-sizing: border-box;
+  font-size: 30rpx;
+}
+.lay-modal-form-label>text{
+  color: #ff0000;
 }
 .select {
   position: relative;
 }
 .lay-modal-form-select {
+  flex: 1;
   padding: 10rpx 0;
   box-sizing: border-box;
+  font-size: 28rpx;
 }
+.lay-modal-form-select>picker{
+  width: 100%;
+  padding: 5rpx 50rpx 5rpx 10rpx;
+  box-sizing: border-box;
+  line-height: 50rpx;
+}
+.select:after {
+  position: absolute;
+  top: 34rpx;
+  right: 20rpx;
+  display: block;
+  width: 0;
+  height: 0;
+  content: ' ';
+  border-width: 7px 5px 0 5px;
+  border-style: solid;
+  border-color: #ccc transparent transparent transparent;
+}
+.picker{
+  width: 100%;
+  font-size: 28rpx;
+}
+.lay-modal-form-select>radio-group {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+.weui-cell {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  margin: 10rpx 20rpx 0 0;
+  font-size: 30rpx;
+}
+.weui-cell__hd{
+  transform: scale(0.8);
+}
+.lay-modal-form-checkbox {
+  padding: 18rpx 0;
+  box-sizing: border-box;
+}
+.lay-modal-form-checkbox>label {
+  border: solid 1px #AFAFAF;
+  display: inline-block;
+  height: 46rpx;
+  line-height: 36rpx;
+  box-sizing: border-box;
+  font-size: 24rpx;
+  position: relative;
+  padding-left: 44rpx;
+  padding-right: 10rpx;
+  border-radius: 22rpx;
+  color: #AFAFAF;
+}
+.lay-modal-form-checkbox>label::before {
+  position: absolute;
+  left: 2rpx;
+  top: 4rpx;
+  height: 32rpx;
+  width: 32rpx;
+  content: " ";
+  border-radius: 50%;
+  background: #AFAFAF;
+}
+.lay-modal-form-checkbox>label.active {
+  border: solid 1px #02B313;
+  padding-left: 10rpx;
+  padding-right: 44rpx;
+  color: #02B313;
+}
+.lay-modal-form-checkbox>label.active::before{
+  background: #02B313;
+  left: calc(100% - 34rpx);
+}
+
+.lay-modal-btn button{
+  width: 200rpx !important;
+  height: 70rpx;
+  line-height: 70rpx;
+  text-align: center;
+  position: relative;
+  padding: 0;
+}
+.lay-modal-btn button image{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 0;
+}
+.lay-modal-btn-v{
+  color: #fff;
+  font-weight: bold;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  line-height: 60rpx;
+  font-size: 30rpx;
+}
+
+.smoke-modal {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+}
+.smoke-nodal-backdrop {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #000;
+  opacity: 0.5;
+}
+.smoke-modal-box {
+  width: 100%;
+  height: auto;
+  background: #fff;
+  padding: 30rpx;
+  border-radius: 10px 10px 0 0;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  box-sizing: border-box;
+}
+
