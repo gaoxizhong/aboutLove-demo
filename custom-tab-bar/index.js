@@ -15,7 +15,7 @@ Component({
     show: false,
     active: 1,
     color: '#000',
-    selectedColor: '#ff0000',
+    selectedColor: '#976FFF',
     list: [
       {
         'pagePath': '/pages/order/index',
@@ -25,8 +25,8 @@ Component({
       },
       {
         'pagePath': '/pages/home/index',
-        'iconPath': '/images/icon_cost.png',
-        'selectedIconPath':'/images/icon_cost_sel.png',
+        'iconPath': '/images/tabs_icon_01.png',
+        'selectedIconPath':'/images/tabs_icon_01.png',
         'text': '主页'
       },
       {

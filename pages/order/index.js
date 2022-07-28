@@ -68,5 +68,8 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  orderFormBtn(e){
+    console.log(e)
   }
 })

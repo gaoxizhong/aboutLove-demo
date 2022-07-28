@@ -170,8 +170,10 @@
 
     <form bindsubmit='smokeSub'>
       <view class="lay-modal-form">
-
-
+        <view class="lay-modal-form-tabs">
+          <view class="{{selTab == '1'?'active':''}}" data-selTab="1" bindtap="layModalTab">普通盲盒</view>
+          <view class="{{selTab == '2'?'active':''}}" data-selTab="2" bindtap="layModalTab">条件盲盒</view>
+        </view>
         <view class="lay-modal-ul">
           <view class="ul-items">
             <label class="lay-modal-form-label"><text>*</text>意向位置</label>
@@ -185,7 +187,7 @@
           <view class="ul-items">
             <label class="lay-modal-form-label"><text>*</text>意向性别</label>
             <view class="lay-modal-form-select">
-              <radio-group name="gender" bindchange="radioChangeSomkeGender">
+              <radio-group name="somke_gender" bindchange="radioChangeSomkeGender">
                 <view wx:for="{{somke_checkeditems}}" wx:key="index">
                   <label class="weui-cell weui-check__label">
                     <view class="weui-cell__hd">
@@ -205,8 +207,8 @@
             </view>
           </view>
 
-          <!-- 条件盲盒内容  -->
-          <view wx:if="{{is_condition}}">
+          <!-- 条件盲盒内容 开始-->
+          <view wx:if="{{selTab == '2'}}">
             <view class="ul-items">
               <label class="lay-modal-form-label"><text> </text>意向星座</label>
               <view class="select lay-modal-form-select">
@@ -215,14 +217,36 @@
                 </picker>
               </view>
             </view>
+
             <view class="ul-items">
               <label class="lay-modal-form-label"><text> </text>选择类型</label>
-              <view class="lay-modal-form-checkbox">
-                <label for="checkboxType" class="{{is_checkboxType?'active':''}}" bindtap="checkboxType">一直留(抽到后不会删除)</label>
+              <view class="lay-modal-form-select">
+                <radio-group name="somke_type" bindchange="radioChangeSomkeType">
+                  <view wx:for="{{somke_typeitems}}" wx:key="index">
+                    <label class="weui-cell weui-check__label">
+                      <view class="weui-cell__hd">
+                        <radio value="{{item.value}}" checked="{{item.checked}}"/>
+                      </view>
+                      <view class="weui-cell__bd">{{item.name}}</view>
+                    </label>
+                  </view>
+                </radio-group>
               </view>
             </view>
 
+            <view class="ul-items">
+              <label class="lay-modal-form-label"><text> </text>意向年龄</label>
+              <view class="lay-modal-form-inputs">
+                <input type="text" class="input" name="conditions_age_min" placeholder="最小周岁" value="{{conditions_age_min}}" />
+                <view class="span">—</view>
+                <input type="text" class="input" name="conditions_age_max" placeholder="最大周岁" value="{{conditions_age_max}}" />
+              </view>
+            </view>
+
+
           </view>
+          <!-- 条件盲盒内容 结束-->
+
         </view>
       </view>
       <view class="lay-modal-btn">

@@ -17,7 +17,6 @@
 .tabbar-item{
   flex: 1;
   height: 100rpx;
-  color: #71c6ff;
   padding: 10rpx 0rpx;
   background-color: #fff;
   border-top: 1rpx solid #e6e6e6;
@@ -58,14 +57,14 @@
   box-sizing: border-box;
 }
 .tabbar-center .mask-item .mask-border{
-  width: 120rpx;
-  height: 120rpx;
+  width: 112rpx;
+  height: 112rpx;
   border: 1rpx solid #e6e6e6;
   border-radius: 50%;
   background-color: #fff;
   position: absolute;
   top: 0;
-  left: calc(50% - 60rpx);
+  left: calc(50% - 56rpx);
   box-sizing: border-box;
 }
 .tabbar-center .item-center{
@@ -74,14 +73,21 @@
 }
 .tabbar-center .item-center .tabbar-image{
   position: absolute;
-  top: 2rpx;
-  left: calc(50% - 58rpx);
-  width: 116rpx;
-  height: 116rpx;
-  padding: 5rpx;
-  background-color: #fff;
+  display: inline-block;
+  background: linear-gradient(to top, #976FFF, #7F4EFD);
+  border: solid 4px white;
+  width: 96rpx;
+  height: 96rpx;
+  line-height: 96rpx;
   border-radius: 50%;
+  bottom: 50rpx;
+  left: 50%;
+  margin-left: -48rpx;
+  box-shadow: 0 -4px 3px 3px rgb(165 189 251 / 20%);
   box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-items: center;
 }
 .tabbar-center .item-center .tabbar-text{
   position: absolute;
@@ -89,7 +95,7 @@
   left: 0rpx;
   width: 100%;
 }
-.tabbar-center .item-center .tabbar-image .image{
-  width: 100%;
-  height: 100%;
+.tabbar-center .item-center .tabbar-image image{
+  width: 36rpx;
+  height: 36rpx;
 }

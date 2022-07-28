@@ -40,6 +40,15 @@ Page({
     somke_weChatNumber:'',// 微信号
     somke_constellation:['白羊座','金牛座','双子座','巨蟹座','狮子座','处女座','天秤座','天蝎座','射手座','摩羯座','水瓶座','双鱼座'], // 星座
     sel_somkeconstellation:'', // 选择的星座
+    somke_typeitems: [   // 选择类型
+      {value: '1', name: '随机'},
+      {value: '2', name: '有'},
+    ],
+    somke_type:'', // 选中的类型
+
+    selTab:'1',
+    conditions_age_min:'', // 最小周岁
+    conditions_age_min:'', // 最小周岁
   },
 
   /**
@@ -212,4 +221,23 @@ Page({
       sel_somkeconstellation: constellation[index],
     })
   },
+  // 选择类型
+  radioChangeSomkeType(e){
+    this.setData({
+      somke_type: e.detail.value,
+    })
+  },
+  // 抽1张立即提交
+  smokeSub(e){
+    console.log(e)
+  },
+
+
+
+
+  layModalTab(e){
+    this.setData({
+      selTab:e.currentTarget.dataset.seltab,
+    })
+  }
 })
