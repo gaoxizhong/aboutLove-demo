@@ -1,0 +1,11 @@
+<view class="page-title">常见问题</view>
+<view class="layui-collapse">
+  <view class="layui-colla-item">
+    <view class="layui-colla-title">如何联系客服？</view>
+    
+  </view>
+  <view class="layui-colla-item"></view>
+  <view class="layui-colla-item"></view>
+  <view class="layui-colla-item"></view>
+  <view class="layui-colla-item"></view>
+</view>

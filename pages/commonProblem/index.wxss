@@ -1,0 +1,39 @@
+page{
+  background: #f1f1f1;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+}
+.page-title{
+  border-width: 1px 0 0;
+  margin: 30rpx 0 40rpx 40rpx;
+  font-size: 40rpx;
+  padding: 0 20rpx;
+}
+.layui-collapse{
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 2px;
+}
+.layui-colla-content, .layui-colla-item {
+  border-top-width: 1px;
+  border-top-style: solid;
+}
+.layui-colla-item{
+  border-color: #eee;
+}
+.layui-colla-item:first-child {
+  border-top: none;
+}
+.layui-colla-title {
+  position: relative;
+  height: 84rpx;
+  line-height: 84rpx;
+  padding: 0 30rpx 0 75rpx;
+  color: #333;
+  background-color: #FAFAFA;
+  cursor: pointer;
+  font-size: 28rpx;
+  overflow: hidden;
+}
+
+

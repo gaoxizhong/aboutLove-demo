@@ -2,7 +2,8 @@
   "pages":[
     "pages/home/index",
     "pages/order/index",
-    "pages/booth/index"
+    "pages/booth/index",
+    "pages/commonProblem/index"
   ],
   "tabBar": {
     "custom": true,

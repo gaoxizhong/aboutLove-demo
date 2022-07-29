@@ -239,5 +239,15 @@ Page({
     this.setData({
       selTab:e.currentTarget.dataset.seltab,
     })
+  },
+
+
+
+
+  // 跳转常见问题
+  gotoProblem(){
+    wx.navigateTo({
+      url: '/pages/commonProblem/index',
+    })
   }
 })

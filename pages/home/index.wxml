@@ -54,7 +54,7 @@
 </view>
 
 <view class="tool-box">
-  <view>
+  <view bindtap="gotoProblem">
     <image src="/images/two_icon_06.png" mode="widthFix"></image>
     <text>常见问题</text>
   </view>
