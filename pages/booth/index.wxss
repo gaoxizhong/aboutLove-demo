@@ -1,1 +1,166 @@
-/* pages/booth/index.wxss */
+.stall-user {
+  padding: 120rpx 50rpx;
+  background-size: 100%;
+  color: white;
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  height: 364rpx;
+}
+.stall-user>image{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
+  z-index: -1;
+}
+.stall-user-info {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding-left: 144rpx;
+  min-height: 124rpx;
+  box-sizing: border-box;
+}
+.stall-user-cover {
+  position: absolute;
+  width: 124rpx;
+  height: 124rpx;
+  background-size: cover;
+  border-radius: 50%;
+  border: solid 3px #EFEAFD;
+  box-sizing: border-box;
+  left: 0;
+  top: 0;
+}
+.stall-user-cover>image{
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
+}
+.stall-user-nickname{
+  font-size: 32rpx;
+  line-height: 40rpx;
+  padding: 18rpx 0;
+  box-sizing: border-box;
+}
+.stall-user-out>view{
+  display: inline-block;
+  background: white;
+  color: #7F4EFD;
+  display: inline-block;
+  line-height: 48rpx;
+  padding: 0 20rpx;
+  border-radius: 12px;
+  font-size: 24rpx;
+}
+.stall-account{
+  height: 222rpx;
+  margin: -60rpx 30rpx 30rpx 30rpx;
+  background: white;
+  box-shadow: 0 0 5px 5px rgb(165 189 251 / 20%);
+  border-radius: 10px;
+  box-sizing: border-box;
+  position: relative;
+}
+.stall-account>image{
+  width: 137rpx;
+  position: absolute;
+  left: 56%;
+  top: 8rpx;
+  z-index: 1;
+}
+.stall-box{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  padding: 30rpx;
+  box-sizing: border-box;
+}
+.stall-account-title {
+  display: flex;
+  justify-content: space-between;
+  font-size: 30rpx;
+  color: #333;
+}
+.stall-title-1{
+  display: flex;
+  align-items: center;
+}
+.stall-title-1>image{
+  width: 40rpx;
+  margin: 0 10rpx 0 0;
+}
+.stall-title-a{
+  color: #AFAFAF;
+  font-size: 24rpx;
+  padding-right: 20rpx;
+  position: relative;
+}
+.stall-title-a::after {
+  content: "";
+  height: 14rpx;
+  width: 14rpx;
+  border-width: 1px 1px 0 0;
+  border-color: #AFAFAF;
+  border-style: solid;
+  transform: rotate(45deg);
+  position: absolute;
+  top: 10rpx;
+  right: 0;
+}
+.stall-account-balance{
+  padding: 10rpx 0;
+  font-size: 46rpx;
+  color: #976FFF;
+  font-weight: bold;
+  box-sizing: border-box;
+}
+.stall-account-statistics{
+  color: #976FFF;
+  font-size: 24rpx;
+}
+.stall-account-statistics text {
+  color: #AFAFAF;
+}
+.stall-tool{
+  margin: 30rpx;
+  display: flex;
+  justify-content: space-around;
+  background: white;
+  box-shadow: 0 0 5px 5px rgb(165 189 251 / 20%);
+  padding: 30rpx 20rpx;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+.stall-tool>view{
+  text-align: center;
+}
+.stall-tool image {
+  width: 72rpx;
+  margin: 0;
+  vertical-align: top;
+}
+.text-p{
+  margin: 0;
+  color: #333;
+  padding-top: 10rpx;
+  box-sizing: border-box;
+}
+.stall-footer {
+  padding: 60rpx 30rpx;
+  color: #CECCCC;
+  font-size: 24rpx;
+  box-sizing: border-box;
+  text-align: center;
+}
+.nickname{
+  height: 100%;
+  display: flex;
+  align-items: center;
+}

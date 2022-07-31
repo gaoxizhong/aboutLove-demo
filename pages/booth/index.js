@@ -68,5 +68,11 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+  gotouserLogin(){
+    let that = this;
+    wx.navigateTo({
+      url: '/pages/userLogin/index',
+    })
+},
 })

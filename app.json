@@ -3,7 +3,8 @@
     "pages/home/index",
     "pages/order/index",
     "pages/booth/index",
-    "pages/commonProblem/index"
+    "pages/commonProblem/index",
+    "pages/userLogin/index"
   ],
   "tabBar": {
     "custom": true,

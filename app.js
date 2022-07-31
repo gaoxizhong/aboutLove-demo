@@ -18,6 +18,6 @@ App({
   },
   globalData: {
     userInfo: null,
-    is_code:''
+    is_code:2,
   }
 })

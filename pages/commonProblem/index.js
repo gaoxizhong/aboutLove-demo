@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    sel_tab:'1'
   },
 
   /**
@@ -62,5 +62,21 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  clickLayui(e){
+    if(e.currentTarget.dataset.tab == this.data.sel_tab){
+      this.setData({
+        sel_tab: '-1',
+      })
+    }else{
+      this.setData({
+        sel_tab: e.currentTarget.dataset.tab
+      })
+    }
+  },
+  goToHome(){
+    wx.switchTab({
+      url: '/pages/home/index',
+    })
   }
 })

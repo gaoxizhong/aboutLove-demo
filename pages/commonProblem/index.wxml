@@ -1,11 +1,54 @@
 <view class="page-title">常见问题</view>
 <view class="layui-collapse">
   <view class="layui-colla-item">
-    <view class="layui-colla-title">如何联系客服？</view>
-    
+    <view class="layui-colla-title {{sel_tab=='1'?'active':''}}" data-tab="1" bindtap="clickLayui">如何联系客服？</view>
+    <view wx:if="{{sel_tab == '1'}}" class="layui-colla-content">
+      <view>客服微信：</view>
+      <view>电子邮箱：</view>
+      <view>使用问题、投诉建议、微商/虚假号码举报、涉黄涉暴、订单交易纠纷等网站相关问题请联系我处理；</view>
+    </view>
   </view>
-  <view class="layui-colla-item"></view>
-  <view class="layui-colla-item"></view>
-  <view class="layui-colla-item"></view>
-  <view class="layui-colla-item"></view>
+  <view class="layui-colla-item">
+    <view class="layui-colla-title {{sel_tab=='2'?'active':''}}" data-tab="2" bindtap="clickLayui">可以查询我的历史留/抽记录吗？</view>
+    <view wx:if="{{sel_tab == '2'}}" class="layui-colla-content">
+      <view>可以，通过首页"订单查询"页面，输入28位的“交易单号”查询您的【留一个】或【抽一个】订单，免费订单暂不支持查询！</view>
+    </view>
+  </view>
+  <view class="layui-colla-item">
+    <view class="layui-colla-title {{sel_tab=='3'?'active':''}}" data-tab="3" bindtap="clickLayui">会多次抽到同一个人吗？</view>
+    <view wx:if="{{sel_tab == '3'}}" class="layui-colla-content">
+      <view>不会，系统会根据您所提交的信息进行随机匹配，同时为您排除您已经抽到的微信号码；</view>
+    </view>
+  </view>
+  <view class="layui-colla-item">
+    <view class="layui-colla-title {{sel_tab=='4'?'active':''}}" data-tab="4" bindtap="clickLayui">支持那些支付方式？</view>
+    <view wx:if="{{sel_tab == '4'}}" class="layui-colla-content">
+      <view>目前仅支持微信支付</view>
+    </view>
+  </view>
+  <view class="layui-colla-item">
+    <view class="layui-colla-title {{sel_tab=='5'?'active':''}}" data-tab="5" bindtap="clickLayui">为什么提示“请不要频繁提交”？</view>
+    <view wx:if="{{sel_tab == '5'}}" class="layui-colla-content">
+      <view>您的IP地址在一天内提交超过3条微信号，就会提示您不要频繁提交哦，请不要进行非法操作，否则会封IP禁止访问；</view>
+    </view>
+  </view>
+  <view class="layui-colla-item">
+    <view class="layui-colla-title {{sel_tab=='6'?'active':''}}" data-tab="6" bindtap="clickLayui">为什么提示“今天已经抽过，明天在来”？</view>
+    <view wx:if="{{sel_tab == '6'}}" class="layui-colla-content">
+      <view>今天您的"微信号码"或"和您同网络的其他人"已经抽过了，如果您没有抽过可以使用流量进行抽取；</view>
+      <view>注意：通过海报邀请获得的次数，不受IP限制；</view>
+      <view>注意：同wifi下上网为同一IP，流量上网单人单IP；</view>
+    </view>
+  </view>
+  <view class="layui-colla-item">
+    <view class="layui-colla-title {{sel_tab=='7'?'active':''}}" data-tab="7" bindtap="clickLayui">为什么会获取到我的IP地址？什么用途？</view>
+    <view wx:if="{{sel_tab == '7'}}" class="layui-colla-content">
+      <view>IP地址是每个网络的唯一标识，由运营商随机分配。IP地址不会泄露您的任何个人隐私。记录用户IP地址属于合法范围内；</view>
+      <view>获取IP主要用途是防止非法用户恶意提交，和非法攻击，给服务器、网站造成不良影响；</view>
+    </view>
+  </view>
+</view>
+
+<view class="layui-form-item">
+  <view class="layui-btn" bindtap="goToHome">回主页</view>
 </view>

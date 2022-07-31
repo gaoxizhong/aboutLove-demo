@@ -1,0 +1,16 @@
+<!-- 授权登录弹窗 -->
+<!-- <include src="/pages/module/login_mark/index.wxml" /> -->
+<view class="userUrl-view">
+  <view class="userUrl-img-box">
+    <open-data type="userAvatarUrl"></open-data>
+  </view>
+</view>
+<view class="info-box">
+  <view class="info-text-1">申请获取以下权限</view>
+  <view class="info-text-2">获得你的公开信息 （昵称、头像等）</view>
+</view>
+
+<view class="footer-btn-box">
+  <button type="primary" size="mini" class="getUserProfile-btn" lang="zh_CN" bindtap="getUserProfile"> 立即登录 </button>
+  <button type="default" size="mini" class="cancelLogin-btn" bindtap='cancelLogin' > 取消登录 </button>
+</view>

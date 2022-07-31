@@ -10,13 +10,7 @@ page{
   padding: 0 20rpx;
 }
 .layui-collapse{
-  border-width: 1px;
-  border-style: solid;
   border-radius: 2px;
-}
-.layui-colla-content, .layui-colla-item {
-  border-top-width: 1px;
-  border-top-style: solid;
 }
 .layui-colla-item{
   border-color: #eee;
@@ -31,9 +25,49 @@ page{
   padding: 0 30rpx 0 75rpx;
   color: #333;
   background-color: #FAFAFA;
-  cursor: pointer;
   font-size: 28rpx;
   overflow: hidden;
 }
-
-
+.layui-colla-title::after {
+  content: "";
+  height: 14rpx;
+  width: 14rpx;
+  border-width: 1px 1px 0 0;
+  border-color: #1b1b1b;
+  border-style: solid;
+  transform: rotate(45deg);
+  position: absolute;
+  top: 34rpx;
+  left: 30rpx;
+}
+.layui-colla-title.active::after{
+  transform: rotate(135deg);
+}
+.layui-colla-content {
+  padding: 20rpx 30rpx;
+  line-height: 1.6;
+  color: #666;
+  box-sizing: border-box;
+}
+.layui-colla-content>view{
+  width: 100%;
+  font-size: 28rpx;
+}
+.layui-form-item{
+  margin: 30rpx 0;
+  clear: both;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.layui-btn{
+  height: 76rpx;
+  line-height: 76rpx;
+  padding: 0 36rpx;
+  background-color: #009688;
+  color: #fff;
+  white-space: nowrap;
+  text-align: center;
+  font-size: 28rpx;
+  border-radius: 20px;
+}

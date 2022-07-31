@@ -1,11 +1,19 @@
 // pages/home/index.js
 import common from "../../common/common";
+import multiArray from "../../js/multiArray";
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    objectMultiArray:multiArray.objectMultiArray,
+    multiIndex: [0, 0],
+    multiArray: [
+        ['北京市', '安徽省', "福建省", "甘肃省", "广东省", "广西省", "贵州省", "海南省", "河北省", "河南省", "黑龙江省", "湖北省", "湖南省", "吉林省", "江苏省", "江西省", "辽宁省", "内蒙古自治区", "宁夏回族自治区", "青海省", "山东省", "山西省", "陕西省", "上海市", "四川省", "天津省", "西藏自治区", "新疆维吾尔自治区", "云南省", "浙江省", "重庆市", "香港", "澳门", "台湾"],
+        ["北京市"]
+    ],
+    garden:'',  // 选中的地址
     poster_tabs:[
       {id:1,image:'/images/banner-1.jpg'},
       {id:2,image:'/images/banner-2.png'},
@@ -15,8 +23,6 @@ Page({
     swiper_index:0,
 //  ===========  ↓ 留一张弹窗数据  ========
     is_lay:false,
-    region:['北京','北京市','东城区'],
-    garden:'',
     checkeditems: [
       {value: '1', name: '男'},
       {value: '2', name: '女'},
@@ -30,8 +36,6 @@ Page({
     lay_introduce:'', // 介绍
 //  ===========  ↓ 抽一张弹窗数据  ========
     is_smoke:false,
-    smoke_region:['北京','北京市','东城区'],
-    somke_garden:'',
     somke_checkeditems: [ // 性别
       {value: '1', name: '男'},
       {value: '2', name: '女'},
@@ -136,16 +140,11 @@ Page({
   },
   clickLeaveBackdrop(){
     this.setData({
-      is_lay: false
+      is_lay: false,
+      garden:''
     })
   },
-  // 选择位置
-  saveGarden(e) {
-    console.log(e)
-    this.setData({
-      garden: (e.detail.value[0] + e.detail.value[1] + e.detail.value[2])
-    })
-  },
+
   //  选择性别
   radioChangeGender(e) {
     this.setData({
@@ -186,8 +185,6 @@ Page({
 
 
   },
-
-
   // 点击抽1张
   clickSmoke(){
     this.setData({
@@ -198,12 +195,7 @@ Page({
   clickSmokeBackdrop(){
     this.setData({
       is_smoke:false,
-    })
-  },
-  // 选择意向位置
-  saveSomkeGarden(e) {
-    this.setData({
-      somke_garden: (e.detail.value[0] + e.detail.value[1] + e.detail.value[2])
+      garden:'',
     })
   },
   //  选择意向性别
@@ -232,22 +224,46 @@ Page({
     console.log(e)
   },
 
-
-
-
   layModalTab(e){
     this.setData({
       selTab:e.currentTarget.dataset.seltab,
     })
   },
 
-
-
-
   // 跳转常见问题
   gotoProblem(){
     wx.navigateTo({
       url: '/pages/commonProblem/index',
     })
+  },
+  // 选择位置
+  bindMultiPickerChange(e) {
+    let multiArray = this.data.multiArray;
+    this.setData({
+      garden: multiArray[0][e.detail.value[0]] + multiArray[1][e.detail.value[1]],
+    })
+  },
+  // 监听位置变化
+  bindMultiPickerColumnChange(e) {
+    let that = this;
+    let multiIndex = that.data.multiIndex;
+    let objectMultiArray = that.data.objectMultiArray;
+    let multiArray = that.data.multiArray;
+    switch (e.detail.column) {
+      case 0:
+        let list = []
+        for (var i = 0; i < objectMultiArray.length; i++) {
+            if (objectMultiArray[i].parid == objectMultiArray[e.detail.value].regid) {
+              list.push(objectMultiArray[i].regname)
+            }
+        }
+        multiArray[1] = list;
+        multiIndex[0] = e.detail.value;
+        multiIndex[1] = 0;
+        that.setData({
+          multiArray,
+          multiIndex
+        })
+    }
   }
 })
