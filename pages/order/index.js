@@ -71,5 +71,13 @@ Page({
   },
   orderFormBtn(e){
     console.log(e)
+    let that = this;
+    let order_sn = e.detail.value.order_sn;
+    if(!order_sn || order_sn == ''){
+      wx.showToast({
+        title: '订单编号不能为空！',
+        icon:'none'
+      })
+    }
   }
 })
