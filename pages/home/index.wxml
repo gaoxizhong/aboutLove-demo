@@ -24,7 +24,7 @@
         <view class="ellipsis ellipsis-h">留1张心情纸条</view>
         <view class="ellipsis ellipsis-p">主动才会有故事！</view>
       </view>
-      <view bindtap="clickSmoke">
+      <view data-sex='1' bindtap="clickSmoke">
         <image src="/images/two_icon_01.png"></image>
         <view class="ellipsis ellipsis-h">抽1张男生纸条</view>
         <view class="ellipsis ellipsis-p">交友盲盒，一次拆个够！</view>
@@ -41,7 +41,7 @@
         <view class="ellipsis ellipsis-h">留1张女生纸条</view>
         <view class="ellipsis ellipsis-p">主动才会有故事！</view>
       </view>
-      <view bindtap="clickSmoke">
+      <view data-sex='2' bindtap="clickSmoke">
         <image src="/images/two_icon_01.png"></image>
         <view class="ellipsis ellipsis-h">抽1张女生纸条</view>
         <view class="ellipsis ellipsis-p">交友盲盒，一次拆个够！</view>

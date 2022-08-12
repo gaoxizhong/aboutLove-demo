@@ -8,7 +8,6 @@ const request = (options) => {
         options.success = function (res) {
             if (res.statusCode.toString()[0] != 2){
              reject(res)
-             console.log('reject')
              wx.showModal({
                title: '错误',
                content: res.statusCode
@@ -33,16 +32,15 @@ const request = (options) => {
             //  }else{
             //   resolve(res)
             //  }
+              resolve(res)
             }
             return
         },
          options.fail = function (err) {
            reject(err)
-           console.log(err)
          },
          options.complete = function(res) {
            wx.hideNavigationBarLoading();
-           console.log(res)
            wx.hideLoading();
          }
         wx.request(options)

@@ -1,6 +1,6 @@
 <view class="stall-user">
   <image src="/images/two_user_back_01.png"></image>
-  <view class="stall-user-info" wx:if="{{!token}}">
+  <view class="stall-user-info" wx:if="{{!member_id}}">
     <view class="stall-user-cover">
       <image src="/images/upd-cover.png" mode="widthFix"></image>
     </view>
@@ -8,14 +8,13 @@
   </view>
   <view class="stall-user-info" wx:else>
     <view class="stall-user-cover">
-      <!-- <image src="/images/upd-cover.png" mode="widthFix"></image> -->
-      <open-data type="userAvatarUrl" class="avatar"></open-data>
+      <image src="{{personData.avatar}}" mode="widthFix"></image>
     </view>
     <view class="stall-user-nickname">
-      <text><open-data type="userNickName" class="nickname"></open-data></text>【ID：】
+      <text>{{personData.nickname}}</text>【ID：{{personData.member_id}}】
     </view>
     <view class="stall-user-out">
-      <view>退出登录</view>
+      <!-- <view>退出登录</view> -->
     </view>
   </view>
 
@@ -54,4 +53,17 @@
 <!-- 活动规则 -->
 <view class="stall-footer">
   
+</view>
+
+<!-- 开通红娘弹窗 -->
+<view class="matchmake-popbox" wx:if="{{is_matchmaker}}">
+  <view class="matchmake-pop-backdrop"></view>
+  <view class="matchmake-modal-box">
+    <view class="layui-layer-title" style="cursor: move;">信息</view>
+    <view class="layui-layer-content">成为红娘，在线上或线下摆个摊</view>
+    <view class="layui-layer-btn layui-layer-btn-">
+      <view class="layui-layer-btn0">开通分销</view>
+      <view class="layui-layer-btn1">退出</view>
+    </view>
+  </view>
 </view>

@@ -53,6 +53,7 @@ Page({
     selTab:'1',
     conditions_age_min:'', // 最小周岁
     conditions_age_min:'', // 最小周岁
+    smoke_sex:'', // 点击抽一个 1、点击的抽男生， 2、点击的抽女生
   },
 
   /**
@@ -181,15 +182,34 @@ Page({
       constellation, // 星座
       introduce: e.detail.value.lay_introduce  // 介绍
     }
+    common.post('',params).then( res =>{
+      console.log(res)
+      if (res.data.code == 0){
+
+      }else{
+
+      }
+    }).catch(e =>{
+        console.log(e)
+    })
 
 
 
   },
   // 点击抽1张
-  clickSmoke(){
-    this.setData({
-      is_smoke:true,
-    })
+  clickSmoke(e){
+    console.log(e)
+    let that = this;
+    let mmeber_id = wx.getStorageSync('member_id');
+    if(!mmeber_id){
+      that.getmember();
+    }else{
+      that.setData({
+        is_smoke:true,
+        smoke_sex: e.currentTarget.dataset.sex,
+      })
+    }
+
   },
   //  点击抽一张弹窗背景
   clickSmokeBackdrop(){
@@ -222,6 +242,48 @@ Page({
   // 抽1张立即提交
   smokeSub(e){
     console.log(e)
+    let that = this;
+
+    common.post('/wechat/wxpay',{
+      member_id: wx.getStorageSync('member_id'),
+    }).then( res =>{
+      console.log(res)
+      if (res.data.code == 0){
+        var $config = res.data.data.parameters;
+        console.log($config)
+        wx.requestPayment({
+          timeStamp: $config['timeStamp'], //注意 timeStamp 的格式
+          nonceStr: $config['nonceStr'],
+          package: $config['package'],
+          signType: $config['signType'],
+          paySign: $config['paySign'], // 支付签名
+          success: function (res) {
+            // 支付成功后的回调函数
+            wx.showToast({
+              title: '支付成功',
+              duration: 1000,
+              icon: 'success'
+            })
+            setTimeout(function () {
+              that.setData({
+                is_smoke:false,
+              })
+            }, 1000)
+          },
+          fail: function (e) {
+            console.log(e)
+            wx.showToast({
+              title: '支付失败！',
+              duration: 1000,
+              icon: 'none'
+            })
+            return;
+          }
+        });
+      }
+    }).catch(e =>{
+        console.log(e)
+    })
   },
 
   layModalTab(e){
@@ -265,5 +327,16 @@ Page({
           multiIndex
         })
     }
+  },
+  getmember(){
+    wx.showToast({
+      title: '请先登录！',
+      icon:'none'
+    })
+    setTimeout(function(){
+      wx.navigateTo({
+        url: '/pages/userLogin/index',
+      })
+    },1000)
   }
 })

@@ -70,7 +70,7 @@ Page({
     let that = this;
     wx.login({
       success: (data) => {
-        console.log(data)
+        console.log(data.code)
         that.setData({
           code: data.code,
         })
@@ -81,13 +81,13 @@ Page({
       success: (res) => {
         console.log(res)
         wx.setStorageSync('user_info', res.userInfo);
-        common.post('/jm/login', {
+        common.post('/wechat/wxlogin', {
           code: that.data.code,
-          // encryptedData: res.encryptedData,
-          // iv: res.iv,
-          avatar: res.userInfo.avatarUrl,
-          nickname: res.userInfo.nickName,
-          sex: res.userInfo.gender,
+          encryptedData: res.encryptedData,
+          iv: res.iv,
+          // avatar: res.userInfo.avatarUrl,
+          // nickname: res.userInfo.nickName,
+          // sex: res.userInfo.gender,
         }).then(res => {
           console.log(res)
           if (res.data.code == 0) {
@@ -97,7 +97,12 @@ Page({
               icon: 'none',
               duration: 2000,
             })
-            wx.setStorageSync('token', res.data.data.token);
+            wx.setStorageSync('member_id', res.data.data.member_id);
+            setTimeout(function(){
+              wx.navigateBack({
+                delta: 1,
+              })
+            },1000)
           }else{
             wx.showToast({
               title: res.data.msg,

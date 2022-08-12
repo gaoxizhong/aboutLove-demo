@@ -3,7 +3,7 @@ module.exports ={
 		// 本地
 		apiHost:"",
 		// 线上
-		apiHost:"https://miniprogram.jiankangche.cn",
+		apiHost:"https://yzx.37huyu.cn/api",
 		
     // getToken:function(){
 		// 	var token = wx.getStorageSync("token") || '';
