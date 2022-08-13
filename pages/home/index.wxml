@@ -141,19 +141,19 @@
           <view class="ul-items">
             <label class="lay-modal-form-label"><text>*</text>微信号码</label>
             <view class="lay-modal-form-select">
-              <input type="text" name="weChatNumber" placeholder="请输入微信号" value="{{weChatNumber}}" />
+              <input type="text" name="wx_account" placeholder="请输入微信号" value="{{wx_account}}" />
             </view>
           </view>
           <view class="ul-items">
             <label class="lay-modal-form-label"><text>*</text>您的年龄</label>
             <view class="lay-modal-form-select">
-              <input type="text" name="weChatNumber" placeholder="请输入年龄（周岁）" name="lay_age" value="{{lay_age}}" />
+              <input type="text" name="age" placeholder="请输入年龄（周岁）" name="lay_age" value="{{lay_age}}" />
             </view>
           </view>
           <view class="ul-items">
             <label class="lay-modal-form-label"><text> </text>选择类型</label>
             <view class="lay-modal-form-checkbox">
-              <label for="checkboxType" class="{{is_checkboxType?'active':''}}" bindtap="checkboxType">一直留(抽到后不会删除)</label>
+              <label for="checkboxType" class="{{select_type == '2'?'active':''}}" bindtap="checkboxType">一直留(抽到后不会删除)</label>
             </view>
           </view>
           <view class="ul-items">
@@ -228,7 +228,7 @@
           <view class="ul-items">
             <label class="lay-modal-form-label"><text>*</text>您的微信</label>
             <view class="lay-modal-form-select">
-              <input type="text" name="weChatNumber" placeholder="请输入微信" value="{{somke_weChatNumber}}" />
+              <input type="text" name="wx_account" placeholder="请输入微信" value="{{somke_wx_account}}" />
             </view>
           </view>
 

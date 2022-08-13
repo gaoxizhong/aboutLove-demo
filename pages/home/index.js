@@ -14,6 +14,8 @@ Page({
         ["北京市"]
     ],
     garden:'',  // 选中的地址
+    province: '', // 省
+    city: '',  // 市
     poster_tabs:[
       {id:1,image:'/images/banner-1.jpg'},
       {id:2,image:'/images/banner-2.png'},
@@ -28,9 +30,9 @@ Page({
       {value: '2', name: '女'},
     ],
     gender:'', // 性别
-    weChatNumber:'', // 微信号
+    wx_account:'', // 微信号
     lay_age:'', // 年龄
-    is_checkboxType:false, // 选择类型状态
+    select_type: '1', // 选择类型状态 1、默认，2、一直抽
     constellation:['白羊座','金牛座','双子座','巨蟹座','狮子座','处女座','天秤座','天蝎座','射手座','摩羯座','水瓶座','双鱼座'], // 星座
     sel_constellation:'', // 选择的星座
     lay_introduce:'', // 介绍
@@ -41,7 +43,7 @@ Page({
       {value: '2', name: '女'},
     ],
     somke_gender:'', // 选中的性别
-    somke_weChatNumber:'',// 微信号
+    somke_wx_account:'',// 微信号
     somke_constellation:['白羊座','金牛座','双子座','巨蟹座','狮子座','处女座','天秤座','天蝎座','射手座','摩羯座','水瓶座','双鱼座'], // 星座
     sel_somkeconstellation:'', // 选择的星座
     somke_typeitems: [   // 选择类型
@@ -60,7 +62,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let that = this;
+    that.getposter_tabs();
   },
 
   /**
@@ -135,6 +138,11 @@ Page({
     })
   },
   clickLeave(){
+    let member_id = wx.getStorageSync('member_id');
+    if(!member_id){
+      this.getmember();
+      return
+    }
     this.setData({
       is_lay: true
     })
@@ -142,7 +150,9 @@ Page({
   clickLeaveBackdrop(){
     this.setData({
       is_lay: false,
-      garden:''
+      garden:'',
+      province: '', // 省
+      city: '',  // 市
     })
   },
 
@@ -155,9 +165,17 @@ Page({
   // 选择类型
   checkboxType(){
     let that = this;
-    that.setData({
-      is_checkboxType: !that.data.is_checkboxType
-    })
+    let select_type = that.data.select_type;
+    if(select_type == '1'){
+      that.setData({
+        select_type: '2'
+      })
+    }else{
+      that.setData({
+        select_type: '1'
+      })
+    }
+
   },
   // 选择星座
   constellation(e){
@@ -172,22 +190,36 @@ Page({
   laySub(e){
     let that = this;
     let garden = that.data.garden;
+    let province = that.data.province;// 省
+    let city = that.data.city; // 市
     let constellation = that.data.sel_constellation;
     let params = {
-      garden,   //  位置
+      member_id: wx.getStorageSync('member_id'),
+      province,  // 省
+      city,// 市
       gender: e.detail.value.gender, // 性别
-      weChatNumber: e.detail.value.weChatNumber, // 微信号
+      wx_account: e.detail.value.wx_account, // 微信号
       age: e.detail.value.age, // 年龄
-      type: that.data.is_checkboxType?'1':'2', // 类型
+      select_type: that.data.select_type, // 类型
       constellation, // 星座
-      introduce: e.detail.value.lay_introduce  // 介绍
+      self_introduction: e.detail.value.lay_introduce,  // 介绍
     }
-    common.post('',params).then( res =>{
-      console.log(res)
+    common.post('/PaperSlip/index',params).then( res =>{
       if (res.data.code == 0){
-
+        wx.showToast({
+          title: res.data.msg,
+          icon:'none'
+        })
+        setTimeout(function(){
+          that.setData({
+            is_lay: false
+          })
+        },1500)
       }else{
-
+        wx.showToast({
+          title: res.data.msg,
+          icon:'none'
+        })
       }
     }).catch(e =>{
         console.log(e)
@@ -200,8 +232,8 @@ Page({
   clickSmoke(e){
     console.log(e)
     let that = this;
-    let mmeber_id = wx.getStorageSync('member_id');
-    if(!mmeber_id){
+    let member_id = wx.getStorageSync('member_id');
+    if(!member_id){
       that.getmember();
     }else{
       that.setData({
@@ -303,6 +335,8 @@ Page({
     let multiArray = this.data.multiArray;
     this.setData({
       garden: multiArray[0][e.detail.value[0]] + multiArray[1][e.detail.value[1]],
+      province: multiArray[0][e.detail.value[0]], // 省
+      city: multiArray[1][e.detail.value[1]],  // 市
     })
   },
   // 监听位置变化
@@ -338,5 +372,23 @@ Page({
         url: '/pages/userLogin/index',
       })
     },1000)
+  },
+  // 轮播图
+  getposter_tabs(){
+    let that = this;
+    common.post('/banner/index',{}).then( res =>{
+      if(res.data.code == 0){
+        that.setData({
+          poster_tabs: res.data.data,
+        })
+      }else{
+        wx.showToast({
+          title: res.data.msg,
+          icon:'none'
+        })
+      }
+    }).catch(e =>{
+      console.log(e)
+    })
   }
 })
