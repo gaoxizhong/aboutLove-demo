@@ -29,25 +29,30 @@
         <image src="/images/two_icon_07.png" mode="widthFix"></image>
         我的账户
       </view>
-      <view class="stall-title-a">立即提现</view>
+      <!-- <view class="stall-title-a">立即提现</view> -->
     </view>
-    <view class="stall-account-balance">￥</view>
+    <view class="stall-account-balance">￥ {{personData.money}}</view>
     <view class="stall-account-statistics">
-      <text>目前已提现</text>￥
+      <!-- <text>目前已提现</text>￥ -->
     </view>
   </view>
 </view>
 
 <!-- 工具 -->
 <view class="stall-tool">
-  <view>
-    <image src="/images/two_icon_08.png" mode="widthFix"></image>
-    <view class="text-p">提现记录</view>
-  </view>
-  <view>
+  <view bindtap="gotoProblem">
     <image src="/images/two_icon_10.png" mode="widthFix"></image>
     <view class="text-p">常见问题</view>
   </view>
+  <button open-type="share" wx:if="{{status == 3}}">
+    <image src="/images/two_icon_08.png" mode="widthFix"></image>
+    <view class="text-p">去推广</view>
+  </button>
+  <view bindtap="openDistribution" wx:else>
+    <image src="/images/two_icon_08.png" mode="widthFix"></image>
+    <view class="text-p">红娘申请</view>
+  </view>
+
 </view>
 
 <!-- 活动规则 -->
@@ -55,15 +60,47 @@
   
 </view>
 
-<!-- 开通红娘弹窗 -->
-<view class="matchmake-popbox" wx:if="{{is_matchmaker}}">
-  <view class="matchmake-pop-backdrop"></view>
-  <view class="matchmake-modal-box">
-    <view class="layui-layer-title" style="cursor: move;">信息</view>
-    <view class="layui-layer-content">成为红娘，在线上或线下摆个摊</view>
-    <view class="layui-layer-btn layui-layer-btn-">
-      <view class="layui-layer-btn0">开通分销</view>
-      <view class="layui-layer-btn1">退出</view>
+<!-- ==== 开通分销 === -->
+<view class="smoke-modal"  wx:if="{{is_matchmaker}}">
+  <view class="smoke-nodal-backdrop" bindtap="matchmake_exit"></view>
+  <view class="smoke-modal-box">
+
+    <view class="lay-modal-title">
+      <view class="lay-modal-remove" bindtap="matchmake_exit">X</view>
+      <text>成为红娘，在线上或线下摆个摊</text>
     </view>
+
+    <form bindsubmit='smokeSub'>
+      <view class="lay-modal-form">
+        <view class="lay-modal-ul">
+          <view class="ul-items">
+            <label class="lay-modal-form-label"><text>*</text>您的姓名</label>
+            <view class="lay-modal-form-select">
+              <input type="text" name="name" placeholder="请输入姓名" value="{{name}}" />
+            </view>
+          </view>
+          <view class="ul-items">
+            <label class="lay-modal-form-label"><text>*</text>手机号</label>
+            <view class="lay-modal-form-select">
+              <input type="text" name="mobile" placeholder="请输入手机号" value="{{mobile}}" />
+            </view>
+          </view>
+          <view class="ul-items">
+            <label class="lay-modal-form-label"><text>*</text>您的微信</label>
+            <view class="lay-modal-form-select">
+              <input type="text" name="wx_account" placeholder="请输入微信" value="{{wx_account}}" />
+            </view>
+          </view>
+
+        </view>
+      </view>
+      <view class="lay-modal-btn">
+        <button form-type='submit'>
+          <image src="/images/two-lay-modal-btn.png"></image>
+          <view class="lay-modal-btn-v">开通分销</view>
+        </button>
+      </view>
+    </form>
+
   </view>
 </view>

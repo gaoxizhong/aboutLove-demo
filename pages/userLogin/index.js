@@ -7,13 +7,21 @@ Page({
    * 页面的初始数据
    */
   data: {
-    code:''
+    code:'',
+    meb_id: '',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let that = this;
+    let meb_id = wx.getStorageSync('meb_id');
+    if(meb_id){
+      that.setData({
+        meb_id,
+      })
+    }
 
   },
 
@@ -81,14 +89,15 @@ Page({
       success: (res) => {
         console.log(res)
         wx.setStorageSync('user_info', res.userInfo);
-        common.post('/wechat/wxlogin', {
+        let pameas = {
           code: that.data.code,
           encryptedData: res.encryptedData,
           iv: res.iv,
-          // avatar: res.userInfo.avatarUrl,
-          // nickname: res.userInfo.nickName,
-          // sex: res.userInfo.gender,
-        }).then(res => {
+        }
+        if(that.data.meb_id){
+          pameas.member_id = that.data.meb_id
+        }
+        common.post('/wechat/wxlogin',pameas).then(res => {
           console.log(res)
           if (res.data.code == 0) {
             app.globalData.is_code = '2';
@@ -98,6 +107,10 @@ Page({
               duration: 2000,
             })
             wx.setStorageSync('member_id', res.data.data.member_id);
+            wx.setStorageSync('meb_id', '');
+            that.setData({
+              meb_id:''
+            })
             setTimeout(function(){
               wx.navigateBack({
                 delta: 1,

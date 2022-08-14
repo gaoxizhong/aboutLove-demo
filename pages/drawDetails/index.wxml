@@ -1,0 +1,59 @@
+<view class="lay-modal">
+  <view class="lay-modal-box">
+    <view class="lay-modal-title">
+      <text>抽到的信息</text>
+    </view>
+    <view class="lay-modal-form">
+      <!-- <view class="upd-cover">
+        <view class="upd-cover-input">
+          <image src="/images/black_tx.png" class="upd-img1"></image>
+        </view>
+      </view> -->
+
+      <view class="lay-modal-ul">
+        <view class="ul-items">
+          <label class="lay-modal-form-label">位置:</label>
+          <view class="select lay-modal-form-select">
+            <view>{{ address }}</view>
+          </view>
+        </view>
+        <view class="ul-items">
+          <label class="lay-modal-form-label">性别</label>
+          <view class="lay-modal-form-select">
+            <view>{{ address }}</view>
+          </view>
+        </view>
+        <view class="ul-items">
+          <label class="lay-modal-form-label">微信号码</label>
+          <view class="lay-modal-form-select">
+           <view>{{wx_account}}</view>
+          </view>
+        </view>
+        <view class="ul-items">
+          <label class="lay-modal-form-label">年龄</label>
+          <view class="lay-modal-form-select">
+            <view>{{age}}</view>
+          </view>
+        </view>
+        <view class="ul-items">
+          <label class="lay-modal-form-label">类型</label>
+          <view class="lay-modal-form-checkbox">
+            <view>{{select_type}}</view>
+          </view>
+        </view>
+        <view class="ul-items">
+          <label class="lay-modal-form-label">星座</label>
+          <view class="select lay-modal-form-select">
+            <view>{{sel_constellation}}</view>
+          </view>
+        </view>
+        <view class="ul-items">
+          <label class="lay-modal-form-label"><text> </text>介绍</label>
+          <view class="lay-modal-form-select">
+            <view>{{lay_introduce}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

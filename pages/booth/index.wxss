@@ -142,6 +142,15 @@
 .stall-tool>view{
   text-align: center;
 }
+.stall-tool>button{
+  text-align: center;
+  margin: 0 !important;
+  padding: 0;
+  width: auto !important;
+  font-size: 32rpx;
+  font-weight: 100;
+  color: #333;
+}
 .stall-tool image {
   width: 72rpx;
   margin: 0;
@@ -247,4 +256,124 @@
   border-color: #1E9FFF;
   background-color: #1E9FFF;
   color: #fff;
+}
+.smoke-modal {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+}
+.smoke-nodal-backdrop {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #00000020;
+  /* opacity: 0.5; */
+}
+.smoke-modal-box {
+    width: 100%;
+    height: auto;
+    background: #fff;
+    padding: 30rpx;
+    border-radius: 10px 10px 0 0;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    box-sizing: border-box;
+}
+.lay-modal-title {
+    width: 100%;
+    position: relative;
+    padding: 0 60rpx;
+    text-align: center;
+    font-weight: bold;
+    font-size: 30rpx;
+    box-sizing: border-box;
+}
+.lay-modal-remove {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 34rpx;
+    width: 64rpx;
+    text-align: center;
+    font-weight: bold;
+    color: #333;
+}
+.lay-modal-form {
+  border: solid 2px #000;
+  margin: 40rpx 0;
+  border-radius: 10px;
+  padding: 10rpx;
+  box-sizing: border-box;
+}
+.lay-modal-btn {
+  padding-bottom: 40rpx;
+  text-align: center;
+  box-sizing: border-box;
+}
+.lay-modal-ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.ul-items {
+  position: relative;
+  padding-left: 190rpx;
+  border-bottom: solid 1px #F7F7F7;
+  min-height: 80rpx;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+.lay-modal-form-label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 190rpx;
+  line-height: 80rpx;
+  padding-left: 20rpx;
+  box-sizing: border-box;
+  font-size: 30rpx;
+}
+.lay-modal-form-select {
+  flex: 1;
+  padding: 10rpx 0;
+  box-sizing: border-box;
+  font-size: 28rpx;
+}
+.lay-modal-form-label>text {
+  color: #ff0000;
+}
+.lay-modal-btn button {
+  width: 200rpx !important;
+  height: 70rpx;
+  line-height: 70rpx;
+  text-align: center;
+  position: relative;
+  padding: 0;
+}
+.lay-modal-btn button image {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 0;
+}
+.lay-modal-btn-v {
+  color: #fff;
+  font-weight: bold;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  line-height: 60rpx;
+  font-size: 30rpx;
 }

@@ -1,0 +1,75 @@
+.lay-modal {
+  width: 100%;
+  height: 100%;
+}
+.lay-modal-box {
+  width: 100%;
+  height: auto;
+  background: #fff;
+  padding: 30rpx;
+  box-sizing: border-box;
+}
+.lay-modal-title {
+  width: 100%;
+  position: relative;
+  padding: 0 60rpx;
+  text-align: center;
+  font-weight: bold;
+  font-size: 30rpx;
+  box-sizing: border-box;
+}
+.lay-modal-form {
+  border: solid 2px #000;
+  margin: 40rpx 0;
+  border-radius: 10px;
+  padding: 10rpx;
+  box-sizing: border-box;
+}
+.upd-cover {
+  text-align: center;
+  padding: 40rpx 0;
+  box-sizing: border-box;
+}
+.upd-cover-input {
+  position: relative;
+  display: inline-block;
+  background-size: cover;
+  height: 328rpx;
+  width: 328rpx;
+  line-height: 328rpx;
+  overflow: hidden;
+}
+.upd-img1 {
+  width: 100%;
+  height: 100%;
+}
+.lay-modal-ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.ul-items {
+  position: relative;
+  padding-left: 190rpx;
+  border-bottom: solid 1px #F7F7F7;
+  min-height: 80rpx;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+.lay-modal-form-label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 190rpx;
+  line-height: 80rpx;
+  padding-left: 20rpx;
+  box-sizing: border-box;
+  font-size: 30rpx;
+}
+.lay-modal-form-select {
+  flex: 1;
+  padding: 10rpx 0;
+  box-sizing: border-box;
+  font-size: 28rpx;
+}

@@ -3,7 +3,7 @@
     <block wx:for="{{poster_tabs}}" wx:key="index">
       <swiper-item  class="is_secl" data-id="{{item.id}}" data-swiper_index="{{swiper_index}}">
         <view class="swiper-item-view {{index == swiper_index?'scaleY-1':'scaleY-2'}}" >
-          <image src="{{item.image}}" mode='scaleToFill'/>
+          <image src="{{item.banner}}" mode='scaleToFill'/>
         </view>
       </swiper-item>
     </block>
@@ -19,12 +19,12 @@
       <view class="fast-title-text">男生盒子</view>
     </view>
     <view class="fast-ul">
-      <view bindtap="clickLeave">
+      <view data-type_box='1' bindtap="clickLeave">
         <image src="/images/two_icon_02.png"></image>
-        <view class="ellipsis ellipsis-h">留1张心情纸条</view>
+        <view class="ellipsis ellipsis-h">留1张男生纸条</view>
         <view class="ellipsis ellipsis-p">主动才会有故事！</view>
       </view>
-      <view data-sex='1' bindtap="clickSmoke">
+      <view data-type_box='1' bindtap="clickSmoke">
         <image src="/images/two_icon_01.png"></image>
         <view class="ellipsis ellipsis-h">抽1张男生纸条</view>
         <view class="ellipsis ellipsis-p">交友盲盒，一次拆个够！</view>
@@ -36,12 +36,12 @@
       <view class="fast-title-text">女生盒子</view>
     </view>
     <view class="fast-ul">
-      <view bindtap="clickLeave">
+      <view data-type_box='2' bindtap="clickLeave">
         <image src="/images/two_icon_03.png"></image>
         <view class="ellipsis ellipsis-h">留1张女生纸条</view>
         <view class="ellipsis ellipsis-p">主动才会有故事！</view>
       </view>
-      <view data-sex='2' bindtap="clickSmoke">
+      <view data-type_box='2' bindtap="clickSmoke">
         <image src="/images/two_icon_01.png"></image>
         <view class="ellipsis ellipsis-h">抽1张女生纸条</view>
         <view class="ellipsis ellipsis-p">交友盲盒，一次拆个够！</view>
@@ -71,7 +71,22 @@
 <view class="block-title">
   <text class="b-t">精选推荐/</text>和有趣的人一起交流！
 </view>
-
+<view class="ageType-tabsbox">
+  <view class="{{selagetab == '3'?'active':''}}" bindtap="selagetab" data-selagetab="3">全部</view>
+  <view class="{{selagetab == '1'?'active':''}}" bindtap="selagetab" data-selagetab="1">只看男生</view>
+  <view class="{{selagetab == '2'?'active':''}}" bindtap="selagetab" data-selagetab="2">只看女生</view>
+</view>
+<view class="photos-box">
+  <view class="photosList" wx:for="{{photos}}" wx:key="index">
+    <view class="photos-items" data-avatar_id="{{item.member_id}}" bindtap="clickavatar">
+      <image src="{{item.avatar}}" mode="aspectFit"></image>
+    </view>
+  </view>
+  <view class="nulldata_wrap" wx:if="{{photos.length <= 0}}">
+    <image src='/images/zanwu.png' mode='widthFix'></image>
+    <view class='msg'>暂无数据</view>
+  </view>
+</view>
 
 
 
@@ -119,7 +134,7 @@
             <label class="lay-modal-form-label"><text>*</text>选择位置</label>
             <view class="select lay-modal-form-select">
               <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
-                  <view class="picker">{{ garden ? garden:'请选择' }}</view>
+                  <view class="picker">{{ address ? address:'请选择' }}</view>
               </picker>
             </view>
           </view>
@@ -204,7 +219,7 @@
             <label class="lay-modal-form-label"><text>*</text>意向位置</label>
             <view class="select lay-modal-form-select">
               <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
-                <view class="picker">{{ garden ? garden:'请选择' }}</view>
+                <view class="picker">{{ address ? address:'请选择' }}</view>
               </picker>
             </view>
           </view>

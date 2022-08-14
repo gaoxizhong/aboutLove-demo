@@ -4,7 +4,8 @@
     "pages/order/index",
     "pages/booth/index",
     "pages/commonProblem/index",
-    "pages/userLogin/index"
+    "pages/userLogin/index",
+    "pages/drawDetails/index"
   ],
   "tabBar": {
     "custom": true,

@@ -1,11 +1,12 @@
-// pages/order/index.js
+import common from "../../common/common";
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    
+    is_orderDetails:false,
+    orderDetails:{},
   },
 
   /**
@@ -72,12 +73,30 @@ Page({
   orderFormBtn(e){
     console.log(e)
     let that = this;
-    let order_sn = e.detail.value.order_sn;
-    if(!order_sn || order_sn == ''){
+    let order_no = e.detail.value.order_no;
+    if(!order_no || order_no == ''){
       wx.showToast({
         title: '订单编号不能为空！',
         icon:'none'
       })
+      return
     }
+    common.get('/wechat/orderDetail', {
+      order_no
+    }).then(res => {
+      if (res.data.code == 0) {
+        that.setData({
+          orderDetails: res.data.data,
+          is_orderDetails: true
+        })
+      }
+    }).catch(e => {
+      console.log(e)
+    })
+  },
+  backdrop(){
+    this.setData({
+      is_orderDetails: false
+    })
   }
 })
