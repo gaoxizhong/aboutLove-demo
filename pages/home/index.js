@@ -396,6 +396,11 @@ Page({
             return;
           }
         });
+      }else{
+        wx.showToast({
+          title: res.data.msg,
+          icon:'none'
+        })
       }
     }).catch(e =>{
         console.log(e)
