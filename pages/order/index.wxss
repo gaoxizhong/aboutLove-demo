@@ -147,7 +147,7 @@
   opacity: 0.8;
 }
 .orderDetails-modal-box{
-  min-width: 600rpx;
+  min-width: 640rpx;
   height: auto;
   background: #fff;
   position: absolute;
@@ -175,7 +175,6 @@
   width: 100%;
   padding: 10rpx 20rpx;
   display: flex;
-  align-items: center;
   font-size: 30rpx;
   color: #333;
   box-sizing: border-box;
@@ -188,4 +187,13 @@
 }
 .orderDetails-modal-box>view .text-2{
   flex: 1;
+}
+.fz-box {
+  display: inline-block;
+  padding: 4rpx 20rpx;
+  border-radius: 20px;
+  font-size: 28rpx;
+  background: #e36969;
+  color: #fff;
+  margin: 0 10rpx;
 }

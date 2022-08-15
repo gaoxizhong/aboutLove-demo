@@ -40,7 +40,10 @@
       <view><text class="text-1">订单号:</text><text class="text-2">{{orderDetails.order_no}}</text></view>
       <view><text class="text-1">支付时间:</text><text class="text-2">{{orderDetails.pay_time}}</text></view>
       <view><text class="text-1"> 支付金额:</text><text class="text-2">{{orderDetails.pay_money}}元</text></view>
-      <view><text class="text-1">抽取微信号:</text><text class="text-2">{{orderDetails.get_wxaccount}}</text></view>
+      <view>
+        <text class="text-1">抽取微信号:</text>
+        <text class="text-2" style="color:#e36969;" data-wxtext="{{orderDetails.get_wxaccount?orderDetails.get_wxaccount:''}}" bindtap="fuzhi_wxText">{{orderDetails.get_wxaccount?orderDetails.get_wxaccount:''}}</text>
+      </view>
       <view><text class="text-1">支付说明:</text><text class="text-2">{{orderDetails.remark}}</text></view>
     </view>
   </view>

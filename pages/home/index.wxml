@@ -300,6 +300,20 @@
   </view>
 </view>
 
+<!-- 头像支付弹窗 -->
+<view class="is_notice_marek" wx:if="{{is_p}}"></view>
+<view class="is_notice_box" wx:if="{{is_p}}">
+  <view class="notice_title">盲盒抽取</view>
+  <view class="notice_center">
+    <text>请截图保存或点击复制微信号去微信添加好友</text>
+    <view style="margin-top: 10rpx;">
+      <text>微信号： {{wxtext}}</text>
+      <text class="fz-box" data-wxtext="{{wxtext}}" bindtap="fuzhi_wxText">复制</text>
+    </view>
+  </view>
+  <view class="notice_btn" hover-class="notice_hover_btn" bindtap="notice_btn">确定</view>
+</view>
+
 
 
 

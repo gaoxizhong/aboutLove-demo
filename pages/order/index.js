@@ -98,5 +98,25 @@ Page({
     this.setData({
       is_orderDetails: false
     })
-  }
+  },
+  // 复制
+  fuzhi_wxText(e){
+    let that = this;
+    console.log(e)
+    let S_info = e.currentTarget.dataset.wxtext;
+    console.log(S_info)
+    wx.setClipboardData({
+      data: S_info,
+      success (res) {
+        wx.getClipboardData({
+          success (res) {
+            console.log(res.data) 
+            wx.showToast({
+              title: '复制成功！',
+            })
+          }
+        })
+      }
+    })
+  },
 })

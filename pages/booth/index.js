@@ -173,20 +173,42 @@ Page({
       mobile,
       wx_account,
     }
-    common.post('/users/applyForPartner',parmas).then( res =>{
+    common.post('/PaperSlip/applyForPartner',parmas).then( res =>{
       console.log(res)
       if (res.data.code == 0){
-        wx.showToast({
-          title: '提交成功，审核中...',
-          duration: 1000,
-          icon: 'success'
-        })
-        setTimeout(function () {
-          that.setData({
-            is_matchmaker:false,
-          })
-          that.getPersonInfo();
-        }, 1000)
+        var $config = res.data.data;
+        wx.requestPayment({
+          timeStamp: $config['timeStamp'], //注意 timeStamp 的格式
+          nonceStr: $config['nonceStr'],
+          package: $config['package'],
+          signType: $config['signType'],
+          paySign: $config['paySign'], // 支付签名
+          success: function (res) {
+            console.log(res)
+            // 支付成功后的回调函数
+            wx.showToast({
+              title: '支付成功！',
+              duration: 1500,
+              icon: 'success'
+            })
+            setTimeout(function () {
+              that.setData({
+                is_matchmaker:false,
+              })
+              that.getPersonInfo();
+            }, 1500)
+          },
+          fail: function (e) {
+            console.log(e)
+            wx.showToast({
+              title: '支付失败！',
+              duration: 1000,
+              icon: 'none'
+            })
+            return;
+          }
+        });
+
       }else{
         wx.showToast({
           title: res.data.data,

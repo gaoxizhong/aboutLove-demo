@@ -15,7 +15,8 @@ Page({
     ],
     address:'',  // 选中的地址
     poster_tabs:[],
-    photos:[], // 精彩推荐
+    photos:[], // 精彩推荐列表
+    pagesIndex: 1,// 精彩推荐列表分页
     swiper_index:0,
 //  ===========  ↓ 留一张弹窗数据  ========
     is_lay:false,
@@ -51,7 +52,9 @@ Page({
 
     selTab:'1',  // 抽一张 普通/条件 选择
     type_box:'', // 选择的是哪个类型盒子 1、男生盒子， 2、女生盒子
-    selagetab:'3' // 3、全部 1、只看男生； 2、只看女生
+    selagetab:'3', // 3、全部 1、只看男生； 2、只看女生
+    is_p: false,
+    wxtext: ''
   },
 
   /**
@@ -85,6 +88,11 @@ Page({
         show:true
       })
     }
+    this.setData({
+      selagetab:'3', // 3、全部 1、只看男生； 2、只看女生
+      pagesIndex: 1,
+      photos:[],
+    })
     this.getphotos('3');
   },
 
@@ -363,7 +371,7 @@ Page({
       console.log(res)
       if (res.data.code == 0){
         var $config = res.data.data;
-        console.log($config)
+        var order_no =  $config.order_no;
         wx.requestPayment({
           timeStamp: $config['timeStamp'], //注意 timeStamp 的格式
           nonceStr: $config['nonceStr'],
@@ -383,7 +391,7 @@ Page({
               that.setData({
                 is_smoke:false,
               })
-
+              that.orderFormBtn(order_no);
             }, 1000)
           },
           fail: function (e) {
@@ -487,6 +495,7 @@ Page({
     let that = this;
     let gender = g;
     common.post('/index/photos',{
+      member_id: wx.getStorageSync('member_id'),
       gender,
     }).then( res =>{
       if(res.data.code == 0){
@@ -509,17 +518,23 @@ Page({
     })
     this.getphotos(e.currentTarget.dataset.selagetab);
   },
+  // 点击头像支付
   clickavatar(e){
     let that = this;
     let avatar_member_id = e.currentTarget.dataset.avatar_id;
+    let member_id =  wx.getStorageSync('member_id');
+    if(!member_id){
+      that.getmember();
+      return
+    }
     let parmas = {
-      member_id: wx.getStorageSync('member_id'),
+      member_id,
       avatar_member_id,
     }
     common.post('/PaperSlip/getWxByClickAvatar',parmas).then( res =>{
       if (res.data.code == 0){
         var $config = res.data.data;
-        console.log($config)
+        var order_no =  $config.order_no;
         wx.requestPayment({
           timeStamp: $config['timeStamp'], //注意 timeStamp 的格式
           nonceStr: $config['nonceStr'],
@@ -535,9 +550,7 @@ Page({
               icon: 'success'
             })
             setTimeout(function () {
-              that.setData({
-                is_smoke:false,
-              })
+              that.orderFormBtn(order_no);
             }, 1000)
           },
           fail: function (e) {
@@ -560,5 +573,52 @@ Page({
     }).catch(e =>{
         console.log(e)
     })
-  }
+  },
+
+  // 复制
+  fuzhi_wxText(e){
+    let that = this;
+    let S_info = e.currentTarget.dataset.wxtext;
+    wx.setClipboardData({
+      data: S_info,
+      success (res) {
+        wx.getClipboardData({
+          success (res) {
+            console.log(res.data) 
+            wx.showToast({
+              title: '复制成功！',
+            })
+          }
+        })
+      }
+    })
+  },
+  notice_btn(){
+    let that = this;
+    that.setData({
+      is_p:false,
+    })
+  },
+  // 订单号查询微信号
+  orderFormBtn(d){
+    let that = this;
+    let order_no = d;
+    common.get('/wechat/orderDetail', {
+      order_no
+    }).then(res => {
+      if (res.data.code == 0) {
+        that.setData({
+          wxtext: res.data.data.get_wxaccount,
+          is_p: true
+        })
+      }else{
+        wx.showToast({
+          title: res.data.code,
+          icon:'none'
+        })
+      }
+    }).catch(e => {
+      console.log(e)
+    })
+  },
 })
