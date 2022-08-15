@@ -6,19 +6,30 @@ Page({
    * 页面的初始数据
    */
   data: {
+    is_tixian: false, // 提现弹窗
     is_matchmaker: false,
     member_id:'',
     user_info:{},
     personData:{},
     wx_account:'',
     name:'',
-    mobile:''
+    mobile:'',
+    debug_submit: true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let that = this;
+    let member_id = wx.getStorageSync('member_id');
+    if (!member_id) {
+      wx.showToast({
+        title: '请先登录！',
+        icon:'none'
+      })
+      that.gotouserLogin();
+    }
     // 禁止右上角转发
     wx.hideShareMenu();
   },
@@ -43,6 +54,7 @@ Page({
     }
     let member_id = wx.getStorageSync('member_id');
     if (!member_id) {
+
       return
     } else {
       that.setData({
@@ -129,7 +141,16 @@ Page({
   },
   // 点击开通分销
   openDistribution(){
-    this.setData({
+    let that = this;
+    let member_id = wx.getStorageSync('member_id');
+    if(!member_id){
+      wx.showToast({
+        title: '请先登录！',
+        icon:'none'
+      })
+      return
+    }
+    that.setData({
       is_matchmaker: true
     })
   },
@@ -175,5 +196,101 @@ Page({
     }).catch(e =>{
         console.log(e)
     })
+  },
+  // 点击立即提现
+  clicktxian(){
+    this.setData({
+      is_tixian: true
+    })
+  },
+  //  点击提现弹窗 --- 退出
+  tixian_exit(){
+    this.setData({
+      is_tixian: false
+    })
+  },
+
+  //提现按钮
+  tixianSub(e) {
+    console.log(e)
+    let that = this;
+    let withdrw_money = Number(e.detail.value.withdrw_money);
+    let debug_submit = that.data.debug_submit;
+
+    if (withdrw_money < 100 ) {
+      wx.showToast({
+        title: '提现金额最低限制100起！',
+        icon: 'none'
+      })
+      return
+    }
+    
+    if( !debug_submit ){
+      return
+    }
+    that.setData({
+      debug_submit:false
+    })
+    wx.showModal({
+      title: '提现提醒',
+      content: '审核通过后1-2个工作日到账',
+      showCancel: true,
+      cancelText: '取消',
+      cancelColor: '#d3d3d3',
+      confirmText: '确认',
+      confirmColor: '#65B532',
+      success: function (res) {
+        if (res.confirm) {
+          wx.showLoading({
+            title: '提现中...',
+          })
+          common.post('/Users/WithdrwApply', {
+            member_id: wx.getStorageSync('member_id'),
+            withdrw_money,
+          }).then(res => {
+            if (res.data.code == 0) {
+              wx.hideLoading();
+              wx.showToast({
+                title: '提交审核成功！',
+                icon: 'none',
+                duration: 1500,
+              })
+              setTimeout(function(){
+                that.setData({
+                  is_tixian: false
+                })
+                that.getPersonInfo();
+              },1500)
+
+            } else {
+              wx.hideLoading();
+              wx.showToast({
+                title: res.data.msg,
+                icon:'none'
+              })
+              that.setData({
+                debug_submit:true
+              })
+            }
+          }).catch(e => {
+            wx.hideLoading();
+            that.setData({
+              debug_submit:true
+            })
+            console.log(e)
+          })
+        }
+        if (res.cancel) {
+          wx.hideLoading()
+          that.setData({
+            debug_submit:true,
+          })
+        }
+
+      },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
+
   },
 })

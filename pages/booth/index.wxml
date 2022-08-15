@@ -29,7 +29,7 @@
         <image src="/images/two_icon_07.png" mode="widthFix"></image>
         我的账户
       </view>
-      <!-- <view class="stall-title-a">立即提现</view> -->
+      <view class="stall-title-a" bindtap="clicktxian">立即提现</view>
     </view>
     <view class="stall-account-balance">￥ {{personData.money}}</view>
     <view class="stall-account-statistics">
@@ -101,6 +101,37 @@
         </button>
       </view>
     </form>
+  </view>
+</view>
 
+
+<!-- ==== 提现 === -->
+<view class="smoke-modal"  wx:if="{{is_tixian}}">
+  <view class="smoke-nodal-backdrop" bindtap="tixian_exit"></view>
+  <view class="smoke-modal-box">
+
+    <view class="lay-modal-title">
+      <view class="lay-modal-remove" bindtap="tixian_exit">X</view>
+      <text>提现</text>
+    </view>
+
+    <form bindsubmit='tixianSub'>
+      <view class="lay-modal-form">
+        <view class="lay-modal-ul">
+          <view class="ul-items">
+            <label class="lay-modal-form-label"><text>*</text>提现金额</label>
+            <view class="lay-modal-form-select">
+              <input type="number" name="withdrw_money" placeholder="金额最低限制100起!" value="{{wx_account}}" />
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="lay-modal-btn">
+        <button form-type='submit'>
+          <image src="/images/two-lay-modal-btn.png"></image>
+          <view class="lay-modal-btn-v">提现</view>
+        </button>
+      </view>
+    </form>
   </view>
 </view>

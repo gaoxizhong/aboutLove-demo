@@ -444,6 +444,7 @@ page{
   padding: 0 20rpx;
   width: 100%;
   box-sizing: border-box;
+  margin-top: 10rpx;
 }
 .photos-box>view.photosList{
   box-sizing: border-box;
@@ -460,7 +461,7 @@ page{
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 6px 4px #a5bdfb3b;
+  box-shadow: 0 0 5px 3px rgb(165 189 251 / 20%);
 }
 .photos-items image{
   width: 140rpx;
