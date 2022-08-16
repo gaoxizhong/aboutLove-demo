@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    page_status: 2, // 页面状态
     objectMultiArray:multiArray.objectMultiArray,
     multiIndex: [0, 0],
     multiArray: [
@@ -68,6 +69,7 @@ Page({
     }
     console.log(wx.getStorageSync('meb_id'))
     that.getposter_tabs();
+
   },
 
   /**
@@ -478,8 +480,14 @@ Page({
     common.post('/banner/index',{}).then( res =>{
       if(res.data.code == 0){
         that.setData({
-          poster_tabs: res.data.data,
+          poster_tabs: res.data.data.list,
+          page_status: res.data.data.status
         })
+        if(res.data.data.status == 2){
+          wx.setNavigationBarTitle({
+            title: '生活服务'
+          })
+        }
       }else{
         wx.showToast({
           title: res.data.msg,
@@ -621,4 +629,10 @@ Page({
       console.log(e)
     })
   },
+  gotoProblem1(){
+    wx.showToast({
+      title: '敬请期待！',
+      icon:'none'
+    })
+  }
 })
