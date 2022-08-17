@@ -67,9 +67,12 @@ Page({
     if(options.meb_id){
       wx.setStorageSync('meb_id', options.meb_id);
     }
-    console.log(wx.getStorageSync('meb_id'))
+    const accountInfo = wx.getAccountInfoSync();
+    //release 正式服
+    that.setData({
+      page_status: accountInfo.miniProgram.envVersion === 'release' ? '1' : '2',
+    })
     that.getposter_tabs();
-
   },
 
   /**
@@ -481,7 +484,7 @@ Page({
       if(res.data.code == 0){
         that.setData({
           poster_tabs: res.data.data.list,
-          page_status: res.data.data.status
+          // page_status: res.data.data.status
         })
         if(res.data.data.status == 2){
           wx.setNavigationBarTitle({

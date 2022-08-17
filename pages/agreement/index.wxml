@@ -1,0 +1,5 @@
+<import src="../../wxParse/wxParse.wxml" />
+<view class="pages-titlebox">{{is_use == '1'? '用户协议' : '用户须知'}}</view>
+<view class="text-infobox">
+  <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+</view>

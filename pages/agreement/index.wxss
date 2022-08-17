@@ -1,0 +1,20 @@
+page{
+  font-size: 32rpx;
+  padding: 30rpx;
+  box-sizing: border-box;
+}
+.pages-titlebox{
+  font-weight: bold;
+  padding-bottom: 30rpx;
+  box-sizing: border-box;
+  text-align: center;
+}
+.text-infobox{
+  width: 100%;
+  font-size: 30rpx;
+  box-sizing: border-box;
+}
+.text-infobox>text {
+  height: auto;
+  float: left;
+}

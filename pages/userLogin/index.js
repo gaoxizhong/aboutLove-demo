@@ -9,6 +9,7 @@ Page({
   data: {
     code:'',
     meb_id: '',
+    is_xy:false
   },
 
   /**
@@ -76,6 +77,14 @@ Page({
   // 微信授权
   getUserProfile(){
     let that = this;
+    let is_xy = that.data.is_xy;
+    if(!is_xy){
+      wx.showToast({
+        title: '请先勾选用户协议！',
+        icon:'none'
+      })
+      return
+    }
     wx.login({
       success: (data) => {
         console.log(data.code)
@@ -141,4 +150,17 @@ Page({
       delta: 1,
     })
   },
+  radioChangeGender(){
+    this.setData({
+      is_xy: !this.data.is_xy
+    })
+  },
+  // 点击查看协议
+  gotoXy(e){
+    console.log(e)
+    let is_use = e.currentTarget.dataset.is_use;
+    wx.navigateTo({
+      url: '/pages/agreement/index?is_use=' + is_use,
+    })
+  }
 })

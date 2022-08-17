@@ -12,3 +12,15 @@
   <button type="primary" size="mini" class="getUserProfile-btn" lang="zh_CN" bindtap="getUserProfile"> 立即登录 </button>
   <button type="default" size="mini" class="cancelLogin-btn" bindtap='cancelLogin' > 取消登录 </button>
 </view>
+
+<view class="xieyi-box">
+  <view class="label-box">
+    <label class="weui-cell weui-check__label">
+      <view class="weui-cell__hd" bindtap="radioChangeGender">
+        <radio value="1" checked="{{is_xy}}"/>
+      </view>
+    </label>
+    <view class="weui-cell__bd weui-cell-text" data-is_use="1" bindtap="gotoXy">《用户协议》</view>
+    <view class="weui-cell__bd weui-cell-text" data-is_use="2" bindtap="gotoXy">《用户须知》</view>
+  </view>
+</view>
