@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    page_status: 2, // 页面状态
+    page_status: 1, // 页面状态
     objectMultiArray:multiArray.objectMultiArray,
     multiIndex: [0, 0],
     multiArray: [
@@ -71,6 +71,9 @@ Page({
     //release 正式服
     that.setData({
       page_status: accountInfo.miniProgram.envVersion === 'release' ? '1' : '2',
+    })
+    wx.setNavigationBarTitle({
+      title: accountInfo.miniProgram.envVersion === 'release' ? '线上脱单盲盒' : '生活服务',
     })
     that.getposter_tabs();
   },
@@ -486,11 +489,6 @@ Page({
           poster_tabs: res.data.data.list,
           // page_status: res.data.data.status
         })
-        if(res.data.data.status == 2){
-          wx.setNavigationBarTitle({
-            title: '生活服务'
-          })
-        }
       }else{
         wx.showToast({
           title: res.data.msg,

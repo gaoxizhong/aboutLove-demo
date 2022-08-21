@@ -21,6 +21,6 @@
       </view>
     </label>
     <view class="weui-cell__bd weui-cell-text" data-is_use="1" bindtap="gotoXy">《用户协议》</view>
-    <view class="weui-cell__bd weui-cell-text" data-is_use="2" bindtap="gotoXy">《用户须知》</view>
+    <!-- <view class="weui-cell__bd weui-cell-text" data-is_use="2" bindtap="gotoXy">《用户须知》</view> -->
   </view>
 </view>
