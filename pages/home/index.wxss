@@ -236,7 +236,7 @@ page{
   position: relative;
   padding-left: 190rpx;
   border-bottom: solid 1px #F7F7F7;
-  min-height: 80rpx;
+  height: 80rpx;
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -246,10 +246,12 @@ page{
   left: 0;
   top: 0;
   width: 190rpx;
-  line-height: 80rpx;
   padding-left: 20rpx;
   box-sizing: border-box;
   font-size: 30rpx;
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 .lay-modal-form-label>text{
   color: #ff0000;
@@ -259,9 +261,16 @@ page{
 }
 .lay-modal-form-select {
   flex: 1;
-  padding: 10rpx 0;
+  /* padding: 10rpx 0; */
   box-sizing: border-box;
   font-size: 28rpx;
+  text-align: left;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.lay-modal-form-select input{
+  width: 100%;
 }
 .lay-modal-form-select>picker{
   width: 100%;
@@ -396,6 +405,7 @@ page{
   left: 0;
   bottom: 0;
   box-sizing: border-box;
+  text-align: center;
 }
 .lay-modal-form-tabs{
   padding: 0;
@@ -546,4 +556,10 @@ page{
   color: #e36969;
   padding: 38rpx 0;
   position: relative;
+}
+.smokeSub-bg{
+  width: 280rpx;
+  height: 280rpx;
+  border-radius: 8px;
+  margin: 30rpx 0;
 }

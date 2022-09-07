@@ -218,11 +218,11 @@
 
     <view class="lay-modal-title">
       <view class="lay-modal-remove" bindtap="clickSmokeBackdrop">X</view>
-      <text>抽1张纸条</text>
+      <text>抽1张{{type_box == '1'?'男生':'女生'}}纸条</text>
     </view>
-
+    <image src="{{type_box == '1'?'/images/bg-chou-1.jpg':'/images/bg-chou-2.jpg'}}" class="smokeSub-bg"></image>
     <form bindsubmit='smokeSub'>
-      <view class="lay-modal-form">
+      <!-- <view class="lay-modal-form">
         <view class="lay-modal-form-tabs">
           <view class="{{selTab == '1'?'active':''}}" data-selTab="1" bindtap="layModalTab">普通盲盒</view>
           <view class="{{selTab == '2'?'active':''}}" data-selTab="2" bindtap="layModalTab">条件盲盒</view>
@@ -260,7 +260,6 @@
             </view>
           </view>
 
-          <!-- 条件盲盒内容 开始-->
           <view wx:if="{{selTab == '2'}}">
             <view class="ul-items">
               <label class="lay-modal-form-label"><text> </text>意向星座</label>
@@ -295,13 +294,17 @@
                 <input type="text" class="input" name="conditions_age_max" placeholder="最大周岁" value="{{conditions_age_max}}" />
               </view>
             </view>
-
-
           </view>
-          <!-- 条件盲盒内容 结束-->
 
         </view>
+      </view> -->
+      <view class="ul-items">
+        <label class="lay-modal-form-label"><text>*</text>您的微信</label>
+        <view class="lay-modal-form-select">
+          <input type="text" name="wx_account" placeholder="请输入微信" value="{{somke_wx_account}}" />
+        </view>
       </view>
+      <view class=""></view>
       <view class="lay-modal-btn">
         <button form-type='submit'>
           <image src="/images/two-lay-modal-btn.png"></image>
