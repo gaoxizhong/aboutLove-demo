@@ -70,7 +70,7 @@ Page({
     const accountInfo = wx.getAccountInfoSync();
     //release 正式服
     that.setData({
-      page_status: accountInfo.miniProgram.envVersion === 'release' ? '1' : '2',
+      page_status: accountInfo.miniProgram.envVersion === 'release' ? '1' : '1',
     })
     wx.setNavigationBarTitle({
       title: accountInfo.miniProgram.envVersion === 'release' ? '线上脱单盲盒' : '生活服务',
