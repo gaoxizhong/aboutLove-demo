@@ -109,19 +109,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- ============  弹窗部分  ============ -->
 
 <!-- ==== 留一个弹窗 === -->
@@ -131,11 +118,12 @@
 
     <view class="lay-modal-title">
       <view class="lay-modal-remove" bindtap="clickLeaveBackdrop">X</view>
-      <text>留1张纸条</text>
+      <text>留1张{{type_box == '1'?'男生':'女生'}}纸条</text>
     </view>
+    <image src="{{type_box == '1'?'/images/bg-chou-1.jpg':'/images/bg-chou-2.jpg'}}" class="smokeSub-bg"></image>
 
     <form bindsubmit='laySub'>
-      <view class="lay-modal-form">
+      <!-- <view class="lay-modal-form">
         <view class="upd-cover">
           <view class="upd-cover-input">
             <image src="/images/black_tx.png" class="upd-img1"></image>
@@ -205,7 +193,16 @@
           <image src="/images/two-lay-modal-btn.png"></image>
           <view class="lay-modal-btn-v">立即提交</view>
         </button>
+      </view> -->
+      <view class="ul-items">
+        <label class="lay-modal-form-label"><text>*</text>您的微信</label>
+        <view class="lay-modal-form-select">
+          <input type="text" name="wx_account" placeholder="请输入微信" value="{{wx_account}}" />
+        </view>
       </view>
+        <button form-type='submit' class="lay-modal-newbtn">
+          消耗<text>【1个爱心锁】</text>留张纸条
+        </button>
     </form>
 
   </view>
@@ -304,13 +301,21 @@
           <input type="text" name="wx_account" placeholder="请输入微信" value="{{somke_wx_account}}" />
         </view>
       </view>
-      <view class=""></view>
-      <view class="lay-modal-btn">
+      <view class="sameCity-box">
+        <view>仅抽同城</view>
+        <view class="shopinfo-pass-box">
+          <switch name="switch" color="#29c572" checked="{{switchvalue}}" bindchange="switch1Change"/>
+        </view>
+      </view>
+        <button form-type='submit' class="lay-modal-newbtn">
+          消耗<text>【1个爱心锁】</text>抽取
+        </button>
+      <!-- <view class="lay-modal-btn">
         <button form-type='submit'>
           <image src="/images/two-lay-modal-btn.png"></image>
           <view class="lay-modal-btn-v">立即提交</view>
         </button>
-      </view>
+      </view> -->
     </form>
 
   </view>

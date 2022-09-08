@@ -55,7 +55,10 @@ Page({
     type_box:'', // 选择的是哪个类型盒子 1、男生盒子， 2、女生盒子
     selagetab:'3', // 3、全部 1、只看男生； 2、只看女生
     is_p: false,
-    wxtext: ''
+    wxtext: '',
+    switchvalue:false,
+    latitude:'',
+    longitude:'',
   },
 
   /**
@@ -70,12 +73,30 @@ Page({
     const accountInfo = wx.getAccountInfoSync();
     //release 正式服
     that.setData({
-      page_status: accountInfo.miniProgram.envVersion === 'release' ? '1' : '1',
+      page_status: accountInfo.miniProgram.envVersion === 'release' ? '1' : '2',
     })
     wx.setNavigationBarTitle({
       title: accountInfo.miniProgram.envVersion === 'release' ? '线上脱单盲盒' : '生活服务',
     })
     that.getposter_tabs();
+    wx.getLocation({
+      type: 'wgs84',
+      success:function(res){
+        that.setData({
+          longitude: Number(res.longitude),
+          latitude: Number(res.latitude)
+        })
+      },
+      fail: function(res) {
+        if (res.errMsg == "getLocation:fail auth deny") {
+          wx.showToast({
+            title: '请开启微信授权！',
+            icon:'none'
+          })
+        }
+        
+      }
+    })
   },
 
   /**
@@ -194,32 +215,26 @@ Page({
   // 留1张提交
   laySub(e){
     let that = this;
-    let address = that.data.address; //省市区
-    let constellation = that.data.sel_constellation;
+    // let address = that.data.address; //省市区
+    // let constellation = that.data.sel_constellation;
+    // let params = {
+    //   member_id: wx.getStorageSync('member_id'),
+    //   address,
+    //   gender: e.detail.value.gender, // 性别
+    //   wx_account: e.detail.value.wx_account, // 微信号
+    //   age: e.detail.value.age, // 年龄
+    //   select_type: that.data.select_type, // 类型
+    //   constellation, // 星座
+    //   self_introduction: e.detail.value.lay_introduce,  // 介绍
+    //   type: that.data.type_box, // 性别盒子
+    // }
     let params = {
       member_id: wx.getStorageSync('member_id'),
-      address,
-      gender: e.detail.value.gender, // 性别
       wx_account: e.detail.value.wx_account, // 微信号
-      age: e.detail.value.age, // 年龄
-      select_type: that.data.select_type, // 类型
-      constellation, // 星座
-      self_introduction: e.detail.value.lay_introduce,  // 介绍
       type: that.data.type_box, // 性别盒子
-    }
-    if(params.address == ''){
-      wx.showToast({
-        title: '请先选择位置！',
-        icon:'none'
-      })
-      return
-    }
-    if(params.gender == ''){
-      wx.showToast({
-        title: '请先选择您的性别！',
-        icon:'none'
-      })
-      return
+      gender: that.data.type_box, // 性别
+      latitude: that.data.latitude,
+      longitude: that.data.longitude,
     }
     if(params.wx_account == ''){
       wx.showToast({
@@ -227,21 +242,14 @@ Page({
         icon:'none'
       })
       return
-    }    
-    if(params.age == ''){
+    }  
+    if(params.latitude == '' || params.longitude == ''){
       wx.showToast({
-        title: '请输入年龄！',
+        title: '请先授权微信地理位置！',
         icon:'none'
       })
       return
-    }
-    if(params.constellation == ''){
-      wx.showToast({
-        title: '请选择您的星座！',
-        icon:'none'
-      })
-      return
-    }
+    }   
     common.post('/PaperSlip/index',params).then( res =>{
       if (res.data.code == 0){
         var $config = res.data.data;
@@ -352,29 +360,49 @@ Page({
   smokeSub(e){
     console.log(e)
     let that = this;
-    let type_box = that.data.type_box;
-    let address = that.data.address;
-    let gender = e.detail.value.somke_gender;
+    let type_box = that.data.type_box; // 盒子类型
+    // let address = that.data.address;
+    // let gender = e.detail.value.somke_gender;
     let wx_account =  e.detail.value.wx_account;
+    if(wx_account == ''|| !wx_account){
+      wx.showToast({
+        title: '请填写你的微信号！',
+        icon:'none'
+      })
+    }
     let parmas = {
       member_id: wx.getStorageSync('member_id'),
       type: type_box,
-      address,
-      gender,
+      gender: type_box,
       wx_account,
     }
-    let selTab = that.data.selTab;
-    if(selTab == '1'){
-      // 普通盲盒
-      parmas.takeout_type = 'ordinary';
-    }else if(selTab == '2'){
-      // 条件盲盒
-      parmas.takeout_type = 'condition';
-      parmas.constellation = that.data.sel_somkeconstellation;
-      parmas.select_type = that.data.somke_type;
-      parmas.min_age = e.detail.value.conditions_age_min;
-      parmas.max_age = e.detail.value.conditions_age_max;
+    if(!wx_account || wx_account == ''){
+      wx.showToast({
+        title: '请先填写微信号！',
+        icon:'none'
+      })
+      return
     }
+    let switchvalue = that.data.switchvalue;
+    if(switchvalue){
+      parmas.is_location = 1;
+      parmas.latitude = that.data.latitude;
+      parmas.longitude =  that.data.longitude;
+    }else{
+      parmas.is_location = 2;
+      parmas.latitude = '';
+      parmas.longitude =  '';
+    }
+    // let selTab = that.data.selTab;
+    // if(selTab == '1'){
+    //   parmas.takeout_type = 'ordinary';
+    // }else if(selTab == '2'){
+    //   parmas.takeout_type = 'condition';
+    //   parmas.constellation = that.data.sel_somkeconstellation;
+    //   parmas.select_type = that.data.somke_type;
+    //   parmas.min_age = e.detail.value.conditions_age_min;
+    //   parmas.max_age = e.detail.value.conditions_age_max;
+    // }
     common.post('/PaperSlip/takeOutPaperSlip',parmas).then( res =>{
       console.log(res)
       if (res.data.code == 0){
@@ -635,5 +663,13 @@ Page({
       title: '敬请期待！',
       icon:'none'
     })
-  }
+  },
+  switch1Change(e){
+    console.log(e)
+    let that = this;
+    let switchvalue = e.detail.value;
+    that.setData({
+      switchvalue
+    })
+  },
 })
